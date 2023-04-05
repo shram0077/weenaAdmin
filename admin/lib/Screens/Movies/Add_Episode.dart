@@ -1,0 +1,221 @@
+import 'dart:io';
+import 'dart:math';
+import 'package:admin/Models/Post.dart';
+import 'package:admin/Services/Database.dart';
+import 'package:admin/widgets/widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:pod_player/pod_player.dart';
+import 'package:uuid/uuid.dart';
+import '../../Constant/constant.dart';
+import 'package:clipboard/clipboard.dart';
+
+class AddEpisode extends StatefulWidget {
+  final PostModel postModel;
+
+  const AddEpisode({Key? key, required this.postModel}) : super(key: key);
+
+  @override
+  State<AddEpisode> createState() => _AddEpisodeState();
+}
+
+class _AddEpisodeState extends State<AddEpisode> {
+  bool _loading = false;
+  bool? isPlay;
+  File? _video;
+  final videoURLController = TextEditingController();
+  String? _videoURL;
+
+  dynamic lastEpisode;
+  getSeries() async {
+    setState(() {
+      _loading = true;
+    });
+    List<PostModel> otherSeries =
+        await DatabaseServices.getOtherEpisodes(widget.postModel);
+    if (mounted) {
+      setState(() {
+        if (otherSeries.isEmpty) {
+          print('NO HAVE ANY SERIES');
+          setState(() {
+            lastEpisode = 2;
+          });
+        } else {
+          lastEpisode = otherSeries.last.episode;
+          setState(() {
+            lastEpisode++;
+            _loading = false;
+          });
+          print(lastEpisode);
+        }
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getSeries();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: appBarColor,
+        appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              "Adding other episode to ${widget.postModel.title}",
+              style:
+                  GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            backgroundColor: appBarColor,
+            automaticallyImplyLeading: false,
+            leading: _loading ? const SizedBox() : BackButton()),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+          child: Column(
+            children: [
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: TextFormField(
+                    textDirection: TextDirection.ltr,
+                    style: GoogleFonts.barlow(),
+                    controller: videoURLController,
+                    maxLines: 1,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Video URL',
+                    ),
+                    onChanged: (value) {
+                      _videoURL = value;
+                      setState(() {
+                        videoURLController;
+                        _video;
+                      });
+                    },
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Episode:',
+                    style: GoogleFonts.lato(
+                        fontSize: 15.5,
+                        color: whiteColor,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    lastEpisode.toString(),
+                    style: GoogleFonts.lato(
+                      color: whiteColor,
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              _loading
+                  ? circularProgressIndicator()
+                  : SizedBox(
+                      height: 50,
+                      width: 120,
+                      child: MaterialButton(
+                        splashColor: const Color.fromARGB(0, 255, 214, 64),
+                        onPressed: () {
+                          if (videoURLController.text.isEmpty) {
+                            Clipboard.getData(Clipboard.kTextPlain)
+                                .then((value) {
+                              videoURLController.text =
+                                  videoURLController.text +
+                                      value!.text.toString();
+                              setState(() {
+                                videoURLController.text;
+                                _video;
+                              });
+                            });
+                          } else {
+                            if (_loading = true) {
+                              Fluttertoast.showToast(msg: 'in process');
+                            } else {
+                              addOtherseries(widget.postModel);
+                            }
+                          }
+                        },
+                        color: moviePageColor,
+                        padding: const EdgeInsets.all(15),
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Text(
+                          videoURLController.text.isEmpty ? "Paste" : "Add",
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.white),
+                        ),
+                      ),
+                    ),
+            ],
+          ),
+        ));
+  }
+
+// abe if else lera danem agar znjera ayksnabu ba znjeray zyadkraw nabe rubdat krdaraka
+  addOtherseries(PostModel postModel) async {
+    setState(() {
+      _loading = true;
+    });
+    var uuid = Uuid().v4();
+    UploadTask uploadVideoTask = storageRef
+        .child("video's/${widget.postModel.title}, $uuid.mp4")
+        .putFile(_video!);
+    TaskSnapshot taskSnapshotV = await uploadVideoTask.whenComplete(() => null);
+    String videoUrl = await taskSnapshotV.ref
+        .getDownloadURL()
+        .whenComplete(() => print("Video uploaded to Cloud Storage"));
+
+    await postsRef
+        .doc(widget.postModel.userId)
+        .collection('userPosts')
+        .doc(widget.postModel.postuid)
+        .collection('otherEpisode')
+        .doc(uuid)
+        .set({
+      "description": widget.postModel.description,
+      "video": videoUrl,
+      "Timestamp": Timestamp.now(),
+      "postuid": uuid,
+      "title": widget.postModel.title,
+      "type": widget.postModel.type,
+      "verified": false,
+      "userId": widget.postModel.userId,
+      'thumbnail': widget.postModel.thumbnail,
+      "episode": lastEpisode,
+      "series": 0,
+      'tags': widget.postModel.tags,
+      "trailer": widget.postModel.trailer,
+      "imdbRating": widget.postModel.imdbRating
+    });
+    setState(() {
+      _loading = false;
+    });
+    print("Data's uploaded to Cloud Firestore");
+    Fluttertoast.showToast(
+        msg: 'Added', backgroundColor: moviePageColor, textColor: Colors.white);
+    Navigator.pop(context);
+  }
+}
