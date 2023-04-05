@@ -19,18 +19,6 @@ class CheckUser extends StatefulWidget {
 class _CheckUserState extends State<CheckUser> {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  checkingUser(UserModell userModel) {
-    if (!userModel.admin) {
-      setState(() {
-        AuthService.logout();
-        AuthService.getScreenId();
-        Fluttertoast.showToast(msg: "Only Admin's can login");
-      });
-    } else {
-      Navigator.pushNamed(context, "/home", arguments: userModel);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +52,16 @@ class _CheckUserState extends State<CheckUser> {
                 );
               }
               UserModell userModel = UserModell.fromDoc(snapshot.data);
-              setState(() {
-                checkingUser(userModel);
-              });
+              if (!userModel.admin) {
+                setState(() {
+                  AuthService.logout();
+                  Navigator.pop(context);
+                  Fluttertoast.showToast(msg: "Only Admin's can login");
+                });
+              } else {
+                setState(() {});
+                Navigator.pushNamed(context, "/home", arguments: userModel);
+              }
               return Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

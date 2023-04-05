@@ -58,15 +58,6 @@ class _LoginState extends State<Login> {
                             color: _isError ? errorColor : whiteColor),
                       ),
                     ),
-                    Container(
-                      height: MediaQuery.of(context).size.height / 5,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                'assets/images/weena.png',
-                              ),
-                              fit: BoxFit.cover)),
-                    ),
                   ],
                 ),
                 Padding(
@@ -186,9 +177,7 @@ class _LoginState extends State<Login> {
                                     _obscureText
                                         ? CupertinoIcons.eye_slash_fill
                                         : CupertinoIcons.eye,
-                                    color: _obscureText
-                                        ? errorColor
-                                        : Colors.white,
+                                    color: whiteColor,
                                   ))
                             ],
                           ),
