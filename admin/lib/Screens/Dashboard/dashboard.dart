@@ -83,15 +83,17 @@ class _DashboardState extends State<Dashboard> {
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
                           if (!snapshot.hasData) {
-                            return Padding(
-                              padding: const EdgeInsets.only(top: 300.0),
-                              child: Center(child: circularProgressIndicator()),
-                            );
+                            return Center(
+                                child: LinearProgressIndicator(
+                              backgroundColor: whiteColor,
+                              color: moviePageColor,
+                            ));
                           } else if (snapshot == ConnectionState.waiting) {
-                            return Padding(
-                              padding: const EdgeInsets.only(top: 300.0),
-                              child: Center(child: circularProgressIndicator()),
-                            );
+                            return Center(
+                                child: LinearProgressIndicator(
+                              backgroundColor: whiteColor,
+                              color: moviePageColor,
+                            ));
                           }
                           if (snapshot.hasError) {
                             return Center(
