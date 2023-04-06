@@ -12,6 +12,8 @@ import 'package:page_transition/page_transition.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Screens/Post/EditPost.dart';
+
 class PostConatiner extends StatefulWidget {
   final String currentUserId;
   final PostModel postModel;
@@ -90,10 +92,28 @@ class _PostConatinerState extends State<PostConatiner> {
                         bottomRight: Radius.circular(9),
                         bottomLeft: Radius.circular(9)),
                     color: moviePageColor),
-                child: Text(
-                  widget.postModel.title,
-                  style: GoogleFonts.roboto(
-                      color: Colors.white, fontWeight: FontWeight.w600),
+                child: Row(
+                  children: [
+                    Text(
+                      widget.postModel.title,
+                      style: GoogleFonts.roboto(
+                          color: Colors.white, fontWeight: FontWeight.w600),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: EditPost(
+                                    postModel: widget.postModel,
+                                  )));
+                        },
+                        icon: Icon(
+                          Icons.edit,
+                          color: whiteColor,
+                        ))
+                  ],
                 )),
           ],
         ),

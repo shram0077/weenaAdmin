@@ -1,33 +1,31 @@
 import 'package:admin/Constant/constant.dart';
 import 'package:admin/Models/Post.dart';
-import 'package:admin/Models/userModel.dart';
 import 'package:admin/Services/Database.dart';
 import 'package:admin/widgets/PostCard.dart';
-import 'package:admin/widgets/PostConatiner.dart';
-import 'package:admin/widgets/widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Reccomends extends StatefulWidget {
-  static const String id = 'reccomends';
+class Explorer extends StatefulWidget {
+  static const String id = 'exp';
 
   @override
-  State<Reccomends> createState() => _ReccomendsState();
+  State<Explorer> createState() => _ExplorerState();
 }
 
-class _ReccomendsState extends State<Reccomends> {
+class _ExplorerState extends State<Explorer> {
+  List<PostModel> _explorer = [];
   bool _resreshing = false;
-  List<PostModel> _recommended = [];
-
-  getRecommendedPost() async {
+  getEXP() async {
     setState(() {
       _resreshing = true;
     });
-    List<PostModel> recommendedPosts =
-        await DatabaseServices.getRecommendedPost();
+    List<PostModel> exp = await DatabaseServices.getExplorerPost();
     if (mounted) {
       setState(() {
-        _recommended = recommendedPosts.toList();
+        _explorer = exp.toList();
 
         _resreshing = false;
       });
@@ -38,7 +36,7 @@ class _ReccomendsState extends State<Reccomends> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getRecommendedPost();
+    getEXP();
   }
 
   @override
@@ -49,7 +47,7 @@ class _ReccomendsState extends State<Reccomends> {
         children: [
           Center(
             child: Text(
-              'Reccomends',
+              "Explorer's",
               style: GoogleFonts.roboto(
                   color: whiteColor,
                   fontWeight: FontWeight.w600,
@@ -68,9 +66,9 @@ class _ReccomendsState extends State<Reccomends> {
                   childAspectRatio: 3 / 2,
                   crossAxisSpacing: 1,
                   mainAxisSpacing: 1),
-              itemCount: _recommended.length,
+              itemCount: _explorer.length,
               itemBuilder: (BuildContext ctx, index) {
-                return PostCard(postModel: _recommended[index]);
+                return PostCard(postModel: _explorer[index]);
               }),
         ],
       ),

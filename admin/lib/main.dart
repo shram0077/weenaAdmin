@@ -1,7 +1,8 @@
 import 'package:admin/Screens/Dashboard/dashboard.dart';
-import 'package:admin/Screens/Dramas/dramas.dart';
+import 'package:admin/Screens/Post/Dramas/dramas.dart';
 import 'package:admin/Screens/Login/login.dart';
-import 'package:admin/Screens/NewMovies/newMovies.dart';
+import 'package:admin/Screens/Post/Explorer/explorer.dart';
+import 'package:admin/Screens/Post/NewMovies/newMovies.dart';
 import 'package:admin/Screens/Post/Reccomends/Reccomends.dart';
 import 'package:admin/Screens/Users/users.dart';
 import 'package:admin/Screens/home.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
         Reccomends.id: (context) => Reccomends(),
         Dashboard.id: (context) => Dashboard(),
         Home.id: (context) => Home(),
-        NewMovies.id: (context) => NewMovies()
+        NewMovies.id: (context) => NewMovies(),
+        Explorer.id: (context) => Explorer()
       },
       debugShowCheckedModeBanner: false,
       title: 'Weena-Admin',

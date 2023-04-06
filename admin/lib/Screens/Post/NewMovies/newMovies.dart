@@ -1,33 +1,30 @@
 import 'package:admin/Constant/constant.dart';
 import 'package:admin/Models/Post.dart';
-import 'package:admin/Models/userModel.dart';
 import 'package:admin/Services/Database.dart';
 import 'package:admin/widgets/PostCard.dart';
-import 'package:admin/widgets/PostConatiner.dart';
-import 'package:admin/widgets/widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Reccomends extends StatefulWidget {
-  static const String id = 'reccomends';
+class NewMovies extends StatefulWidget {
+  static const String id = 'newMovies';
 
   @override
-  State<Reccomends> createState() => _ReccomendsState();
+  State<NewMovies> createState() => _NewMoviesState();
 }
 
-class _ReccomendsState extends State<Reccomends> {
+class _NewMoviesState extends State<NewMovies> {
+  List<PostModel> _newMovies = [];
   bool _resreshing = false;
-  List<PostModel> _recommended = [];
-
-  getRecommendedPost() async {
+  getNewovies() async {
     setState(() {
       _resreshing = true;
     });
-    List<PostModel> recommendedPosts =
-        await DatabaseServices.getRecommendedPost();
+    List<PostModel> recommendedPosts = await DatabaseServices.getNewMovies();
     if (mounted) {
       setState(() {
-        _recommended = recommendedPosts.toList();
+        _newMovies = recommendedPosts.toList();
 
         _resreshing = false;
       });
@@ -38,7 +35,7 @@ class _ReccomendsState extends State<Reccomends> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getRecommendedPost();
+    getNewovies();
   }
 
   @override
@@ -49,7 +46,7 @@ class _ReccomendsState extends State<Reccomends> {
         children: [
           Center(
             child: Text(
-              'Reccomends',
+              'New Movies',
               style: GoogleFonts.roboto(
                   color: whiteColor,
                   fontWeight: FontWeight.w600,
@@ -68,9 +65,9 @@ class _ReccomendsState extends State<Reccomends> {
                   childAspectRatio: 3 / 2,
                   crossAxisSpacing: 1,
                   mainAxisSpacing: 1),
-              itemCount: _recommended.length,
+              itemCount: _newMovies.length,
               itemBuilder: (BuildContext ctx, index) {
-                return PostCard(postModel: _recommended[index]);
+                return PostCard(postModel: _newMovies[index]);
               }),
         ],
       ),

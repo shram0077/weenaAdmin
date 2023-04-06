@@ -5,6 +5,7 @@ import 'package:admin/widgets/widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
@@ -58,10 +59,11 @@ class _EditPostState extends State<EditPost> {
     'Animation and Carton',
   ];
   bool _isLoading = false;
-  save() {
+  save() async {
     setState(() {
       _isLoading = true;
     });
+
     PostModel postModel = PostModel(
         imdbRating: _imdbRating!,
         postuid: _postuid!,
@@ -78,8 +80,117 @@ class _EditPostState extends State<EditPost> {
         verified: _verified!,
         tags: _tagsOfVideo!,
         trailer: _trailer!);
-    DatabaseServices.updatePost(postModel);
+    updatePost(postModel);
+  }
+
+  void updatePost(PostModel postModel) async {
+    // Update on profile
+    QuerySnapshot followerSnapshot =
+        await followersRef.doc(postModel.userId).collection('Followers').get();
+    try {
+      if (followerSnapshot.docChanges.isEmpty) {
+        print('No Followers');
+      } else {
+        for (var docSnapshot in followerSnapshot.docs) {
+          await followingPostsRef
+              .doc(docSnapshot.id)
+              .collection('posts')
+              .doc(postModel.postuid)
+              .update({
+            "description": postModel.description,
+            "video": postModel.video,
+            "Timestamp": postModel.timestamp,
+            "postuid": postModel.postuid,
+            "title": postModel.title,
+            "type": postModel.type,
+            "userId": postModel.userId,
+            "verified": postModel.verified,
+            'thumbnail': postModel.thumbnail,
+            "episode": postModel.episode,
+            'series': postModel.series,
+            "tags": postModel.tags,
+            "trailer": postModel.trailer,
+            "imdbRating": postModel.imdbRating
+          }).whenComplete(() => print('succsufully upDate on Timeline'));
+        }
+      }
+    } catch (e) {
+      print(e);
+    }
+
+    await postsRef
+        .doc(postModel.userId)
+        .collection("userPosts")
+        .doc(postModel.postuid)
+        .update({
+      "description": postModel.description,
+      "video": postModel.video,
+      "Timestamp": postModel.timestamp,
+      "postuid": postModel.postuid,
+      "title": postModel.title,
+      "type": postModel.type,
+      "userId": postModel.userId,
+      "verified": postModel.verified,
+      'thumbnail': postModel.thumbnail,
+      "episode": postModel.episode,
+      'series': postModel.series,
+      "tags": postModel.tags,
+      "trailer": postModel.trailer,
+      "imdbRating": postModel.imdbRating
+    });
+
+    await newMoviesRef.doc(postModel.postuid).update({
+      "description": postModel.description,
+      "video": postModel.video,
+      "Timestamp": postModel.timestamp,
+      "postuid": postModel.postuid,
+      "title": postModel.title,
+      "type": postModel.type,
+      "userId": postModel.userId,
+      "verified": postModel.verified,
+      'thumbnail': postModel.thumbnail,
+      "episode": postModel.episode,
+      'series': postModel.series,
+      "tags": postModel.tags,
+      "trailer": postModel.trailer,
+      "imdbRating": postModel.imdbRating
+    });
+    await recommendedRef.doc(postModel.postuid).update({
+      "description": postModel.description,
+      "video": postModel.video,
+      "Timestamp": postModel.timestamp,
+      "postuid": postModel.postuid,
+      "title": postModel.title,
+      "type": postModel.type,
+      "userId": postModel.userId,
+      "verified": postModel.verified,
+      'thumbnail': postModel.thumbnail,
+      "episode": postModel.episode,
+      'series': postModel.series,
+      "tags": postModel.tags,
+      "trailer": postModel.trailer,
+      "imdbRating": postModel.imdbRating
+    });
+    await explorersRef.doc(postModel.postuid).update({
+      "description": postModel.description,
+      "video": postModel.video,
+      "Timestamp": postModel.timestamp,
+      "postuid": postModel.postuid,
+      "title": postModel.title,
+      "type": postModel.type,
+      "userId": postModel.userId,
+      "verified": postModel.verified,
+      'thumbnail': postModel.thumbnail,
+      "episode": postModel.episode,
+      'series': postModel.series,
+      "tags": postModel.tags,
+      "trailer": postModel.trailer,
+      "imdbRating": postModel.imdbRating
+    });
     setState(() {
+      Fluttertoast.showToast(
+          timeInSecForIosWeb: 3,
+          msg: '${postModel.title} successfully updated!');
       _isLoading = false;
     });
   }
@@ -142,13 +253,15 @@ class _EditPostState extends State<EditPost> {
                 Center(
                   child: circularProgressIndicator(),
                 ),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      _isLoading = false;
-                    });
-                  },
-                  child: Text('Stop!'),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Updating...',
+                  style: GoogleFonts.barlow(
+                      fontSize: 20,
+                      color: moviePageColor,
+                      fontWeight: FontWeight.bold),
                 )
               ],
             )

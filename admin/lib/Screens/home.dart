@@ -1,9 +1,10 @@
 import 'package:admin/Constant/constant.dart';
 import 'package:admin/Models/userModel.dart';
 import 'package:admin/Screens/Dashboard/dashboard.dart';
-import 'package:admin/Screens/Dramas/dramas.dart';
+import 'package:admin/Screens/Post/Dramas/dramas.dart';
 import 'package:admin/Screens/Login/checkUser.dart';
-import 'package:admin/Screens/NewMovies/newMovies.dart';
+import 'package:admin/Screens/Post/Explorer/explorer.dart';
+import 'package:admin/Screens/Post/NewMovies/newMovies.dart';
 import 'package:admin/Screens/Post/Reccomends/Reccomends.dart';
 import 'package:admin/Screens/Upload/upload.dart';
 import 'package:admin/Screens/Users/UserProfile.dart';
@@ -54,6 +55,16 @@ class _HomeState extends State<Home> {
       case NewMovies.id:
         setState(() {
           _selectedScreen = NewMovies();
+        });
+        break;
+      case Dramas.id:
+        setState(() {
+          _selectedScreen = Dramas();
+        });
+        break;
+      case Explorer.id:
+        setState(() {
+          _selectedScreen = Explorer();
         });
         break;
     }
@@ -194,17 +205,22 @@ class _HomeState extends State<Home> {
             AdminMenuItem(
               title: 'Reccomended',
               route: Reccomends.id,
-              icon: Icons.dashboard,
+              icon: Icons.recommend,
             ),
             AdminMenuItem(
               title: 'NewMovies',
               route: NewMovies.id,
-              icon: Icons.dashboard,
+              icon: Icons.new_label,
             ),
             AdminMenuItem(
               title: 'Dramas',
               route: Dramas.id,
-              icon: Icons.dashboard,
+              icon: Icons.video_collection,
+            ),
+            AdminMenuItem(
+              title: 'Explorer',
+              route: Explorer.id,
+              icon: Icons.explore,
             ),
           ],
           selectedRoute: Home.id,
