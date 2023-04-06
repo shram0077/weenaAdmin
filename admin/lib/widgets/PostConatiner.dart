@@ -1,12 +1,14 @@
 import 'package:admin/Constant/constant.dart';
 import 'package:admin/Models/Post.dart';
 import 'package:admin/Models/userModel.dart';
+import 'package:admin/Screens/Movies/moviePage.dart';
 import 'package:admin/Services/Database.dart';
 import 'package:admin/encryption_decryption/encryption.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:google_fonts/google_fonts.dart';
 
@@ -50,15 +52,13 @@ class _PostConatinerState extends State<PostConatiner> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //     context,
-        //     PageTransition(
-        //         type: PageTransitionType.fade,
-        //         child: MoviePage(
-        //           postModel: widget.postModel,
-        //           userModell: widget.userModell,
-        //           currentUserId: widget.currentUserId,
-        //         )));
+        Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.fade,
+                child: MoviePage(
+                  postModel: widget.postModel,
+                )));
       },
       child: Container(
         alignment: Alignment.center,
