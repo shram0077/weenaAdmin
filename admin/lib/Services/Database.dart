@@ -7,6 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class DatabaseServices {
+  // Search posts
+  static Future<QuerySnapshot> searchPosts(
+    String title,
+  ) async {
+    Future<QuerySnapshot> posts = newMoviesRef
+        .where('title', isGreaterThanOrEqualTo: title)
+        .where('title', isLessThan: title + 'z')
+        .get();
+
+    return posts;
+  }
+
   // Search For Users
   static Future<QuerySnapshot> searchUsers(
     String username,
