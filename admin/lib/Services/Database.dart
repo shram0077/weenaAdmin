@@ -187,7 +187,8 @@ class DatabaseServices {
         .collection('userPosts')
         .doc(postModel.id)
         .delete()
-        .whenComplete(() => print("Succsfully deleted in profile"));
+        .whenComplete(() => Fluttertoast.showToast(
+            timeInSecForIosWeb: 5, msg: "Succsfully deleted in profile"));
     QuerySnapshot followerSnapshot =
         await followersRef.doc(postModel.userId).collection('Followers').get();
     for (var docSnapshot in followerSnapshot.docs) {
@@ -196,13 +197,14 @@ class DatabaseServices {
           .collection('posts')
           .doc(postModel.id)
           .delete()
-          .whenComplete(
-              () => print('succsufully deleted in Timeline Followers'));
+          .whenComplete(() => Fluttertoast.showToast(
+              timeInSecForIosWeb: 5,
+              msg: 'succsufully deleted in Timeline Followers'));
       await newMoviesRef.doc(postModel.id).delete();
-      await recommendedRef
-          .doc(postModel.id)
-          .delete()
-          .whenComplete(() => print('succsufully deleted in recommended '));
+      await recommendedRef.doc(postModel.id).delete().whenComplete(() =>
+          Fluttertoast.showToast(
+              timeInSecForIosWeb: 5,
+              msg: 'succsufully deleted in recommended '));
       likesRef.doc(postModel.postuid).delete();
       videoStorage.delete();
       thumbnailStorage.delete();
@@ -237,7 +239,8 @@ class DatabaseServices {
       "tags": tags,
       "trailer": trailer,
       "imdbRating": imdbRating
-    }).whenComplete(() => print("Succsfully upload to profile"));
+    }).whenComplete(() => Fluttertoast.showToast(
+        timeInSecForIosWeb: 6, msg: "Succsfully upload to profile"));
   }
 
   static void uploadToNewMovies(
@@ -268,7 +271,9 @@ class DatabaseServices {
       "tags": tags,
       "trailer": trailer,
       "imdbRating": imdbRating
-    }).whenComplete(() => print('succsufully upload to new Movie collection'));
+    }).whenComplete(() => Fluttertoast.showToast(
+        timeInSecForIosWeb: 6,
+        msg: 'succsufully upload to new Movie collection'));
   }
 
   static void uploadToFollowersTimeline(
@@ -304,7 +309,8 @@ class DatabaseServices {
         "tags": tags,
         "trailer": trailer,
         "imdbRating": imdbRating
-      }).whenComplete(() => print('succsufully upload to Timeline'));
+      }).whenComplete(() => Fluttertoast.showToast(
+          timeInSecForIosWeb: 6, msg: 'succsufully upload to Timeline'));
     }
   }
 }

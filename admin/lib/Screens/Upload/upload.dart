@@ -573,7 +573,7 @@ class _UploadState extends State<Upload> {
     if (_loading) {
       return CircularProgressIndicator();
     } else {
-      return GestureDetector(
+      return InkWell(
         onTap: () async {
           if (_typeMovie == null) {
             Fluttertoast.showToast(msg: 'type of the video is empty');

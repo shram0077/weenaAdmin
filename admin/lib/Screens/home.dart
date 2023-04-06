@@ -18,6 +18,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -70,12 +71,12 @@ class _HomeState extends State<Home> {
     }
   }
 
+  bool? isAdmin;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     AuthService.getScreenId();
-    CheckUser();
   }
 
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -120,6 +121,7 @@ class _HomeState extends State<Home> {
                   );
                 }
                 UserModell userModel = UserModell.fromDoc(snapshot.data);
+
                 return Row(
                   children: [
                     Text(

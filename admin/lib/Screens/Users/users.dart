@@ -6,6 +6,7 @@ import 'package:admin/encryption_decryption/encryption.dart';
 import 'package:admin/widgets/widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -22,6 +23,7 @@ class _UsersState extends State<Users> {
   bool isSearching = false;
   final _searchController = TextEditingController();
   Future<QuerySnapshot>? _users;
+  FirebaseAuth _auth = FirebaseAuth.instance;
   buildSearchField() {
     return Container(
       padding: const EdgeInsets.only(left: 8, bottom: 3),
@@ -124,46 +126,43 @@ class _UsersState extends State<Users> {
                             return Padding(
                               padding: const EdgeInsets.all(3.0),
                               child: ListTile(
+                                onTap: () => Navigator.of(context)
+                                    .push(MaterialPageRoute(
+                                        builder: (context) => UserProfile(
+                                              email: snapshot.data.docs[index]
+                                                  ['email'],
+                                              bio: snapshot.data.docs[index]
+                                                  ['bio'],
+                                              username: snapshot
+                                                  .data.docs[index]['username'],
+                                              displayName: snapshot
+                                                  .data.docs[index]['name'],
+                                              country: snapshot.data.docs[index]
+                                                  ['country'],
+                                              cityortown: snapshot.data
+                                                  .docs[index]['cityorTown'],
+                                              coverPicture: snapshot.data
+                                                  .docs[index]['coverPicture'],
+                                              profilePicture:
+                                                  snapshot.data.docs[index]
+                                                      ['profilePicture'],
+                                              verification: snapshot.data
+                                                  .docs[index]['verification'],
+                                              visitedUserId: snapshot
+                                                  .data.docs[index]['id'],
+                                            ))),
                                 tileColor: moviePageColor.withOpacity(0.8),
-                                contentPadding: const EdgeInsets.symmetric(
+                                contentPadding: EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 5),
                                 // ignore: prefer_const_constructors
-                                trailing: IconButton(
-                                  onPressed: () {
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                            builder: (context) => UserProfile(
-                                                  email: snapshot.data
-                                                      .docs[index]['email'],
-                                                  bio: snapshot.data.docs[index]
-                                                      ['bio'],
-                                                  username: snapshot.data
-                                                      .docs[index]['username'],
-                                                  displayName: snapshot
-                                                      .data.docs[index]['name'],
-                                                  country: snapshot.data
-                                                      .docs[index]['country'],
-                                                  cityortown:
-                                                      snapshot.data.docs[index]
-                                                          ['cityorTown'],
-                                                  coverPicture:
-                                                      snapshot.data.docs[index]
-                                                          ['coverPicture'],
-                                                  profilePicture:
-                                                      snapshot.data.docs[index]
-                                                          ['profilePicture'],
-                                                  verification:
-                                                      snapshot.data.docs[index]
-                                                          ['verification'],
-                                                  visitedUserId: snapshot
-                                                      .data.docs[index]['id'],
-                                                )));
-                                  },
-                                  icon: const Icon(
-                                    CupertinoIcons.eye,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                                trailing: Text(
+                                    snapshot.data.docs[index]["id"] ==
+                                            _auth.currentUser!.uid
+                                        ? "Me"
+                                        : "",
+                                    style: GoogleFonts.roboto(
+                                        color: whiteColor,
+                                        fontWeight: FontWeight.bold)),
                                 subtitle: Text(
                                   snapshot.data.docs[index]['username'],
                                   style: GoogleFonts.roboto(

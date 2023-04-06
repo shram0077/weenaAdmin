@@ -224,6 +224,63 @@ class _EditPostState extends State<EditPost> {
         actions: [
           CupertinoButton(
               child: Text(
+                'Delete',
+                style: GoogleFonts.alef(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 0.3,
+                    color: Colors.white),
+              ),
+              onPressed: () {
+                _isLoading
+                    ? null
+                    : showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: moviePageColor,
+                            title: Text(
+                              "Alert!!",
+                              style: TextStyle(color: whiteColor),
+                            ),
+                            content: Text(
+                              "Are you sure delete this post?",
+                              style: TextStyle(color: whiteColor),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                child: Text(
+                                  "Yes",
+                                  style: TextStyle(
+                                      color: whiteColor,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                onPressed: () {
+                                  DatabaseServices.removeEveryWhere(
+                                      widget.postModel);
+                                },
+                              ),
+                              TextButton(
+                                child: Text("No",
+                                    style: TextStyle(
+                                        color: whiteColor,
+                                        fontWeight: FontWeight.w500)),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+              }),
+          Container(
+            height: 10,
+            width: 0.5,
+            color: whiteColor,
+          ),
+          CupertinoButton(
+              child: Text(
                 'Save',
                 style: GoogleFonts.alef(
                     fontSize: 16,
@@ -233,7 +290,7 @@ class _EditPostState extends State<EditPost> {
               ),
               onPressed: () {
                 _isLoading ? null : save();
-              })
+              }),
         ],
         title: Row(
           children: [
@@ -576,6 +633,20 @@ class _EditPostState extends State<EditPost> {
                               _series = int.parse(value);
                             },
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Type',
+                              style: GoogleFonts.barlow(
+                                  color: moviePageColor,
+                                  fontSize: 17.5,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ],
                         ),
                       ),
                       Card(
