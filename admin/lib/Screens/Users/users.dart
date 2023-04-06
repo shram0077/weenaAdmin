@@ -76,6 +76,7 @@ class _UsersState extends State<Users> {
           elevation: 0,
           title: buildSearchField(),
           centerTitle: true,
+          automaticallyImplyLeading: false,
         ),
         backgroundColor: appBarColor,
         body: _searchController.text.isEmpty
@@ -124,7 +125,7 @@ class _UsersState extends State<Users> {
                           itemCount: snapshot.data.docs.length,
                           itemBuilder: (context, index) {
                             return Padding(
-                              padding: const EdgeInsets.all(3.0),
+                              padding: EdgeInsets.all(8.0),
                               child: ListTile(
                                 onTap: () => Navigator.of(context)
                                     .push(MaterialPageRoute(

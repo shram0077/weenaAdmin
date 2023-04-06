@@ -50,12 +50,55 @@ class _DashboardState extends State<Dashboard> {
     }
   }
 
+  List<PostModel> _newMovies = [];
+  bool _resreshing = false;
+  getNewovies() async {
+    setState(() {
+      _resreshing = true;
+    });
+    List<PostModel> recommendedPosts = await DatabaseServices.getNewMovies();
+    if (mounted) {
+      setState(() {
+        _newMovies = recommendedPosts.toList();
+
+        _resreshing = false;
+      });
+    }
+  }
+
+  List<UserModell> _admin = [];
+  int adminsCount = 0;
+  getAdmins() async {
+    List<UserModell> admins = await DatabaseServices.getAdmin();
+    if (mounted) {
+      setState(() {
+        _admin = admins;
+        adminsCount = _admin.length;
+      });
+    }
+  }
+
+  int _creatorsCunt = 0;
+  List<UserModell> _creators = [];
+  getCreatorsCount() async {
+    List<UserModell> creators = await DatabaseServices.getCreatorsCount();
+    if (mounted) {
+      setState(() {
+        _creators = creators;
+        _creatorsCunt = _creators.length;
+      });
+    }
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getUsersCount();
     getMoviesCount();
+    getNewovies();
+    getAdmins();
+    getCreatorsCount();
   }
 
   bool isExpanded = false;
@@ -70,7 +113,7 @@ class _DashboardState extends State<Dashboard> {
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(60.0),
+              padding: const EdgeInsets.all(60.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -83,13 +126,13 @@ class _DashboardState extends State<Dashboard> {
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
                           if (!snapshot.hasData) {
-                            return Center(
+                            return const Center(
                                 child: LinearProgressIndicator(
                               backgroundColor: whiteColor,
                               color: moviePageColor,
                             ));
                           } else if (snapshot == ConnectionState.waiting) {
-                            return Center(
+                            return const Center(
                                 child: LinearProgressIndicator(
                               backgroundColor: whiteColor,
                               color: moviePageColor,
@@ -177,7 +220,7 @@ class _DashboardState extends State<Dashboard> {
                           );
                         }),
 
-                    SizedBox(
+                    const SizedBox(
                       height: 20.0,
                     ),
                     //Now let's start with the dashboard main rapports
@@ -193,14 +236,14 @@ class _DashboardState extends State<Dashboard> {
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         CupertinoIcons.person_3_fill,
                                         size: 28.0,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15.0,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Users",
                                         style: TextStyle(
                                           fontSize: 26.0,
@@ -209,12 +252,12 @@ class _DashboardState extends State<Dashboard> {
                                       )
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20.0,
                                   ),
                                   Text(
                                     "$_userCount Users",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 36,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -233,15 +276,15 @@ class _DashboardState extends State<Dashboard> {
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         CupertinoIcons.film,
                                         size: 26.0,
                                         color: Colors.red,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15.0,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Movies",
                                         style: TextStyle(
                                           color: Colors.red,
@@ -251,12 +294,12 @@ class _DashboardState extends State<Dashboard> {
                                       )
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20.0,
                                   ),
                                   Text(
                                     "$_moviesCount Movies",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.red,
                                       fontSize: 36,
                                       fontWeight: FontWeight.bold,
@@ -276,15 +319,15 @@ class _DashboardState extends State<Dashboard> {
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.people,
                                         size: 26.0,
                                         color: Colors.amber,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15.0,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Creators",
                                         style: TextStyle(
                                           fontSize: 26.0,
@@ -294,11 +337,11 @@ class _DashboardState extends State<Dashboard> {
                                       )
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20.0,
                                   ),
                                   Text(
-                                    "3 Creators",
+                                    "$_creatorsCunt",
                                     style: TextStyle(
                                       fontSize: 36,
                                       color: Colors.amber,
@@ -319,15 +362,15 @@ class _DashboardState extends State<Dashboard> {
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.admin_panel_settings_outlined,
                                         size: 26.0,
                                         color: Colors.green,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15.0,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Admins",
                                         style: TextStyle(
                                           fontSize: 26.0,
@@ -337,11 +380,11 @@ class _DashboardState extends State<Dashboard> {
                                       )
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20.0,
                                   ),
                                   Text(
-                                    "2",
+                                    "$adminsCount",
                                     style: TextStyle(
                                       fontSize: 36,
                                       color: Colors.green,
@@ -356,7 +399,7 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                     //Now let's set the article section
-                    SizedBox(
+                    const SizedBox(
                       height: 30.0,
                     ),
                     Row(
@@ -366,15 +409,15 @@ class _DashboardState extends State<Dashboard> {
                           children: [
                             Text(
                               "$_moviesCount Movies",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 28.0,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 8.0,
                             ),
-                            Text(
+                            const Text(
                               "in New Movies collection",
                               style: TextStyle(
                                   color: Colors.grey,
@@ -408,10 +451,10 @@ class _DashboardState extends State<Dashboard> {
                                       _searchController.clear();
                                     });
                                   },
-                                  icon: Icon(Icons.close)),
+                                  icon: const Icon(Icons.close)),
                               hintText: "Type Movie Title",
-                              prefixIcon: Icon(Icons.search),
-                              border: OutlineInputBorder(
+                              prefixIcon: const Icon(Icons.search),
+                              border: const OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Colors.black26,
                                 ),
@@ -421,11 +464,11 @@ class _DashboardState extends State<Dashboard> {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15.0,
                     ),
                     _posts == null
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Center(
                             child: FutureBuilder(
                                 future: _posts,
@@ -464,7 +507,7 @@ class _DashboardState extends State<Dashboard> {
                                 }),
                           ),
 
-                    SizedBox(
+                    const SizedBox(
                       height: 25.0,
                     ),
 
@@ -487,21 +530,21 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40.0,
                     ),
                     //Now let's add the mos papulare
                     Row(
                       children: [
-                        Text(
-                          'Most Papulare',
+                        const Text(
+                          'Most Papular',
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.black,
                               fontWeight: FontWeight.bold),
                         )
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -512,8 +555,8 @@ class _DashboardState extends State<Dashboard> {
       //let's add the floating action button
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => Upload())),
-        child: Icon(
+            .push(MaterialPageRoute(builder: (context) => const Upload())),
+        child: const Icon(
           Icons.add,
           color: whiteColor,
         ),
@@ -570,7 +613,7 @@ class _DashboardState extends State<Dashboard> {
                         textDirection: TextDirection.rtl,
                         style: GoogleFonts.barlow(
                             fontWeight: FontWeight.w600,
-                            color: Color.fromARGB(255, 220, 220, 220)),
+                            color: const Color.fromARGB(255, 220, 220, 220)),
                       ),
                     ),
                     trailing: Text(
@@ -582,7 +625,7 @@ class _DashboardState extends State<Dashboard> {
                           fontWeight: FontWeight.bold),
                     ),
                     leading: Container(
-                      padding: EdgeInsets.all(2),
+                      padding: const EdgeInsets.all(2),
                       height: 75,
                       width: 75,
                       decoration: BoxDecoration(

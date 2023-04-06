@@ -1,26 +1,16 @@
 import 'package:admin/Constant/constant.dart';
-import 'package:admin/Models/userModel.dart';
 import 'package:admin/Screens/Dashboard/dashboard.dart';
 import 'package:admin/Screens/Post/Dramas/dramas.dart';
-import 'package:admin/Screens/Login/checkUser.dart';
 import 'package:admin/Screens/Post/Explorer/explorer.dart';
 import 'package:admin/Screens/Post/NewMovies/newMovies.dart';
 import 'package:admin/Screens/Post/Reccomends/Reccomends.dart';
 import 'package:admin/Screens/Upload/upload.dart';
-import 'package:admin/Screens/Users/UserProfile.dart';
 import 'package:admin/Screens/Users/users.dart';
 import 'package:admin/Services/Auth.dart';
-import 'package:admin/encryption_decryption/encryption.dart';
-import 'package:admin/widgets/widget.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 
 class Home extends StatefulWidget {
   static const String id = 'home';
@@ -179,7 +169,7 @@ class _HomeState extends State<Home> {
   }
 
   uploadButton() {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => Upload()));

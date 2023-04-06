@@ -2,6 +2,7 @@ import 'package:admin/Constant/constant.dart';
 import 'package:admin/Models/CommentModel.dart';
 import 'package:admin/Models/Post.dart';
 import 'package:admin/Models/SeriesModel.dart';
+import 'package:admin/Models/userModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -37,9 +38,9 @@ class DatabaseServices {
     return usersSnap.docs.length;
   }
 
-  // Get Movies Count
-  static Future<int> getMoviesCount() async {
-    QuerySnapshot moviesSnap = await newMoviesRef.get();
+// Get Most Papular Movies
+  static Future<int> getPapulareMovies() async {
+    QuerySnapshot moviesSnap = await usersRef.get();
     return moviesSnap.docs.length;
   }
 
@@ -101,6 +102,24 @@ class DatabaseServices {
     return userPosts;
   }
 
+// Get Admin Count
+  static Future<List<UserModell>> getAdmin() async {
+    QuerySnapshot adminSnap =
+        await usersRef.where('admin', isEqualTo: true).get();
+    List<UserModell> userAdmin =
+        adminSnap.docs.map((doc) => UserModell.fromDoc(doc)).toList();
+    print(userAdmin.where((element) => element.admin));
+    return userAdmin;
+  }
+
+  static Future<List<UserModell>> getCreatorsCount() async {
+    QuerySnapshot adminSnap =
+        await usersRef.where('isVerified', isEqualTo: true).get();
+    List<UserModell> userAdmin =
+        adminSnap.docs.map((doc) => UserModell.fromDoc(doc)).toList();
+    print(userAdmin.where((element) => element.admin));
+    return userAdmin;
+  }
   // Get New Movies
 
   static Future<List<PostModel>> getNewMovies() async {
