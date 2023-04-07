@@ -1,20 +1,15 @@
 import 'dart:io';
-import 'dart:math';
 import 'package:admin/Models/Post.dart';
 import 'package:admin/Services/Database.dart';
 import 'package:admin/widgets/widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pod_player/pod_player.dart';
 import 'package:uuid/uuid.dart';
 import '../../Constant/constant.dart';
-import 'package:clipboard/clipboard.dart';
 
 class AddEpisode extends StatefulWidget {
   final PostModel postModel;
@@ -208,7 +203,9 @@ class _AddEpisodeState extends State<AddEpisode> {
       "series": 0,
       'tags': widget.postModel.tags,
       "trailer": widget.postModel.trailer,
-      "imdbRating": widget.postModel.imdbRating
+      "imdbRating": widget.postModel.imdbRating,
+      "likes": widget.postModel.likes,
+      "views": widget.postModel.verified
     });
     setState(() {
       _loading = false;

@@ -103,7 +103,7 @@ class _DashboardState extends State<Dashboard> {
 
   bool isExpanded = false;
   FirebaseAuth _auth = FirebaseAuth.instance;
-
+  String orderItems = 'likes';
   @override
   final _searchController = TextEditingController();
 
@@ -535,6 +535,7 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     //Now let's add the mos papulare
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
                           'Most Papular',
@@ -542,8 +543,112 @@ class _DashboardState extends State<Dashboard> {
                               fontSize: 20,
                               color: Colors.black,
                               fontWeight: FontWeight.bold),
-                        )
+                        ),
+                        DropdownButton(
+                            borderRadius: BorderRadius.circular(8),
+                            hint: Text("Order by"),
+                            items: [
+                              DropdownMenuItem(
+                                value: "Timestamp",
+                                child: Text("Date"),
+                              ),
+                              DropdownMenuItem(
+                                value: "likes",
+                                child: Text("Likes"),
+                              ),
+                              DropdownMenuItem(
+                                value: "views",
+                                child: Text("Views"),
+                              ),
+                            ],
+                            onChanged: (value) {
+                              setState(() {
+                                orderItems = value.toString();
+                                print(orderItems);
+                              });
+                            }),
                       ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: StreamBuilder(
+                          stream: newMoviesRef
+                              .orderBy(orderItems, descending: true)
+                              .snapshots(),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (!snapshot.hasData) {
+                              return const Center(
+                                  child: LinearProgressIndicator(
+                                backgroundColor: whiteColor,
+                                color: moviePageColor,
+                              ));
+                            } else if (snapshot == ConnectionState.waiting) {
+                              return const Center(
+                                  child: LinearProgressIndicator(
+                                backgroundColor: whiteColor,
+                                color: moviePageColor,
+                              ));
+                            }
+                            if (snapshot.hasError) {
+                              return Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('Snapshot Error',
+                                        style: GoogleFonts.alef(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 14,
+                                            color: errorColor)),
+                                  ],
+                                ),
+                              );
+                            }
+                            return GridView.builder(
+                                gridDelegate:
+                                    const SliverGridDelegateWithMaxCrossAxisExtent(
+                                        maxCrossAxisExtent: 200,
+                                        childAspectRatio: 3 / 2,
+                                        crossAxisSpacing: 20,
+                                        mainAxisSpacing: 20),
+                                shrinkWrap: true,
+                                itemCount: snapshot.data.docs.length,
+                                itemBuilder: (BuildContext ctx, index) {
+                                  var title =
+                                      snapshot.data.docs[index]['title'];
+                                  var thumbnail =
+                                      snapshot.data.docs[index]['thumbnail'];
+                                  var video =
+                                      snapshot.data.docs[index]['video'];
+                                  var postuid =
+                                      snapshot.data.docs[index]['postuid'];
+                                  return Container(
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: CachedNetworkImageProvider(
+                                              thumbnail,
+                                            )),
+                                        color: Colors.amber,
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          title,
+                                          style: GoogleFonts.lato(
+                                              color: whiteColor,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                });
+                          }),
                     ),
                   ],
                 ),

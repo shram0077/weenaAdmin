@@ -16,6 +16,8 @@ class PostModel {
   int series;
   double imdbRating;
   String trailer;
+  int views;
+  int likes;
   PostModel(
       {required this.postuid,
       required this.series,
@@ -31,24 +33,29 @@ class PostModel {
       required this.thumbnail,
       required this.verified,
       required this.tags,
+      required this.views,
+      required this.likes,
       required this.trailer});
 
   factory PostModel.fromDoc(DocumentSnapshot doc) {
     return PostModel(
-        id: doc.id,
-        description: doc['description'],
-        userId: doc['userId'],
-        video: doc['video'],
-        timestamp: doc['Timestamp'],
-        postuid: doc['postuid'],
-        title: doc['title'],
-        type: doc['type'],
-        thumbnail: doc['thumbnail'],
-        verified: doc['verified'],
-        episode: doc['episode'],
-        tags: doc['tags'],
-        series: doc['series'],
-        trailer: doc['trailer'],
-        imdbRating: doc['imdbRating']);
+      id: doc.id,
+      description: doc['description'],
+      userId: doc['userId'],
+      video: doc['video'],
+      timestamp: doc['Timestamp'],
+      postuid: doc['postuid'],
+      title: doc['title'],
+      type: doc['type'],
+      thumbnail: doc['thumbnail'],
+      verified: doc['verified'],
+      episode: doc['episode'],
+      tags: doc['tags'],
+      series: doc['series'],
+      trailer: doc['trailer'],
+      imdbRating: doc['imdbRating'],
+      likes: doc['likes'],
+      views: doc['views'],
+    );
   }
 }

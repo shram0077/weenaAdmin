@@ -4,7 +4,6 @@ import 'package:admin/Models/Post.dart';
 import 'package:admin/Models/SeriesModel.dart';
 import 'package:admin/Models/userModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class DatabaseServices {
@@ -254,7 +253,9 @@ class DatabaseServices {
       int series,
       List tags,
       String trailer,
-      double imdbRating) async {
+      double imdbRating,
+      int likes,
+      int views) async {
     await postsRef.doc(userid).collection('userPosts').doc(uuid).set({
       "description": description,
       "video": videoLink,
@@ -269,7 +270,9 @@ class DatabaseServices {
       'series': series,
       "tags": tags,
       "trailer": trailer,
-      "imdbRating": imdbRating
+      "imdbRating": imdbRating,
+      "likes": likes,
+      "views": views
     }).whenComplete(() => Fluttertoast.showToast(
         timeInSecForIosWeb: 6, msg: "Succsfully upload to profile"));
   }
@@ -286,7 +289,9 @@ class DatabaseServices {
       int series,
       List tags,
       String trailer,
-      double imdbRating) {
+      double imdbRating,
+      int likes,
+      int views) {
     newMoviesRef.doc(uuid).set({
       "description": description,
       "video": videoLink,
@@ -301,26 +306,29 @@ class DatabaseServices {
       'series': series,
       "tags": tags,
       "trailer": trailer,
-      "imdbRating": imdbRating
+      "imdbRating": imdbRating,
+      "likes": likes,
+      "views": views
     }).whenComplete(() => Fluttertoast.showToast(
         timeInSecForIosWeb: 6,
         msg: 'succsufully upload to new Movie collection'));
   }
 
   static void uploadToFollowersTimeline(
-    String userid,
-    String uuid,
-    String description,
-    String videoLink,
-    String title,
-    String type,
-    String thumbnailLink,
-    int episode,
-    int series,
-    List tags,
-    String trailer,
-    double imdbRating,
-  ) async {
+      String userid,
+      String uuid,
+      String description,
+      String videoLink,
+      String title,
+      String type,
+      String thumbnailLink,
+      int episode,
+      int series,
+      List tags,
+      String trailer,
+      double imdbRating,
+      int likes,
+      int views) async {
     QuerySnapshot followerSnapshot =
         await followersRef.doc(userid).collection('Followers').get();
 
@@ -339,7 +347,9 @@ class DatabaseServices {
         'series': series,
         "tags": tags,
         "trailer": trailer,
-        "imdbRating": imdbRating
+        "imdbRating": imdbRating,
+        "likes": likes,
+        "views": views
       }).whenComplete(() => Fluttertoast.showToast(
           timeInSecForIosWeb: 6, msg: 'succsufully upload to Timeline'));
     }

@@ -3,6 +3,7 @@ import 'package:admin/Models/Post.dart';
 import 'package:admin/Screens/Movies/moviePage.dart';
 import 'package:admin/Screens/Post/EditPost.dart';
 import 'package:admin/Services/Database.dart';
+import 'package:admin/widgets/widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -134,7 +135,9 @@ class _PostCardState extends State<PostCard> {
                             ],
                           ),
                           IconButton(
-                              onPressed: showModalbottomSheet,
+                              onPressed: () {
+                                showModalPost(widget.postModel, context);
+                              },
                               icon: const Icon(
                                 Icons.more_horiz_outlined,
                                 color: Colors.white,
@@ -197,87 +200,6 @@ class _PostCardState extends State<PostCard> {
           ),
         ),
       ),
-    );
-  }
-
-  showModalbottomSheet() {
-    return showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return Wrap(
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            ListTile(
-              onTap: () async {
-                // DatabaseServices.setToRecommended(widget.postModel, context);
-              },
-              leading: const Icon(Icons.recommend),
-              title: const Text('set to Recommended'),
-            ),
-            ListTile(
-              onTap: () async {
-                recommendedRef
-                    .doc(widget.postModel.postuid)
-                    .delete()
-                    .whenComplete(() => Fluttertoast.showToast(msg: 'Done'));
-              },
-              leading: const Icon(
-                Icons.remove_circle_outline,
-                color: Colors.red,
-              ),
-              title: const Text(
-                'Remove in Recommended-only',
-                style: TextStyle(color: Colors.red),
-              ),
-            ),
-            Divider(),
-            ListTile(
-              onTap: () {
-                // DatabaseServices.setToExplorer(widget.postModel, context);
-              },
-              leading: const Icon(Icons.explore),
-              title: const Text('set to Explorer'),
-            ),
-            ListTile(
-              onTap: () async {
-                explorersRef
-                    .doc(widget.postModel.postuid)
-                    .delete()
-                    .whenComplete(() => Fluttertoast.showToast(msg: 'Done'));
-              },
-              leading: const Icon(
-                Icons.remove_circle_outline,
-                color: Colors.red,
-              ),
-              title: const Text(
-                'Remove in Explorer-only',
-                style: TextStyle(color: Colors.red),
-              ),
-            ),
-            Divider(),
-            ListTile(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    PageTransition(
-                        type: PageTransitionType.fade,
-                        child: EditPost(
-                          postModel: widget.postModel,
-                        )));
-              },
-              leading: const Icon(CupertinoIcons.pencil_circle),
-              title: const Text('Edit'),
-            ),
-            ListTile(
-              onTap: () {
-                DatabaseServices.removeEveryWhere(widget.postModel);
-              },
-              leading: const Icon(CupertinoIcons.trash),
-              title: const Text('Remove everywhere'),
-            ),
-          ],
-        );
-      },
     );
   }
 }

@@ -615,7 +615,9 @@ class _UploadState extends State<Upload> {
                       0,
                       resultTags,
                       _trailer!,
-                      imdbRating!);
+                      imdbRating!,
+                      0,
+                      0);
                 } else if (_typeMovie == 'Series') {
                   DatabaseServices.uploadToProfile(
                       _userId!,
@@ -629,7 +631,9 @@ class _UploadState extends State<Upload> {
                       1,
                       resultTags,
                       _trailer!,
-                      imdbRating!);
+                      imdbRating!,
+                      0,
+                      0);
                 } else if (_typeMovie == 'Movie') {
                   DatabaseServices.uploadToProfile(
                       _userId!,
@@ -643,7 +647,9 @@ class _UploadState extends State<Upload> {
                       0,
                       resultTags,
                       _trailer!,
-                      imdbRating!);
+                      imdbRating!,
+                      0,
+                      0);
                 }
               }
               if (_uploadToNewMovies == true) {
@@ -660,7 +666,9 @@ class _UploadState extends State<Upload> {
                       0,
                       resultTags,
                       _trailer!,
-                      imdbRating!);
+                      imdbRating!,
+                      0,
+                      0);
                 } else if (_typeMovie == 'Series') {
                   DatabaseServices.uploadToNewMovies(
                       _userId!,
@@ -674,7 +682,9 @@ class _UploadState extends State<Upload> {
                       1,
                       resultTags,
                       _trailer!,
-                      imdbRating!);
+                      imdbRating!,
+                      0,
+                      0);
                 } else if (_typeMovie == 'Movie') {
                   DatabaseServices.uploadToNewMovies(
                       _userId!,
@@ -688,7 +698,9 @@ class _UploadState extends State<Upload> {
                       0,
                       resultTags,
                       _trailer!,
-                      imdbRating!);
+                      imdbRating!,
+                      0,
+                      0);
                 }
               }
               if (_uploadToFollowersTimeline == true) {
@@ -704,7 +716,9 @@ class _UploadState extends State<Upload> {
                     0,
                     resultTags,
                     _trailer!,
-                    imdbRating!);
+                    imdbRating!,
+                    0,
+                    0);
               } else if (_typeMovie == 'Series') {
                 DatabaseServices.uploadToFollowersTimeline(
                     _userId!,
@@ -718,7 +732,9 @@ class _UploadState extends State<Upload> {
                     1,
                     resultTags,
                     _trailer!,
-                    imdbRating!);
+                    imdbRating!,
+                    0,
+                    0);
               } else if (_typeMovie == 'Movie') {
                 DatabaseServices.uploadToFollowersTimeline(
                     _userId!,
@@ -732,7 +748,9 @@ class _UploadState extends State<Upload> {
                     0,
                     resultTags,
                     _trailer!,
-                    imdbRating!);
+                    imdbRating!,
+                    0,
+                    0);
               } else {
                 Fluttertoast.showToast(msg: 'no selected any options');
               }

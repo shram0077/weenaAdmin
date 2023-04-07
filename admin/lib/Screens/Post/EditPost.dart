@@ -33,6 +33,8 @@ class _EditPostState extends State<EditPost> {
   bool? _verified;
   Timestamp? _timestamp;
   double? _imdbRating;
+  int? _likes;
+  int? _views;
   //
   List<String> tags = [
     'ئاکشن',
@@ -65,6 +67,8 @@ class _EditPostState extends State<EditPost> {
     });
 
     PostModel postModel = PostModel(
+        likes: _likes!,
+        views: _views!,
         imdbRating: _imdbRating!,
         postuid: _postuid!,
         series: _series!,
@@ -213,6 +217,8 @@ class _EditPostState extends State<EditPost> {
     _episode = widget.postModel.episode;
     _imdbRating = widget.postModel.imdbRating;
     _typeMovie = widget.postModel.type;
+    _likes = widget.postModel.likes;
+    _views = widget.postModel.views;
   }
 
   @override
