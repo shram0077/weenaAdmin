@@ -39,6 +39,7 @@ class _EditPostState extends State<EditPost> {
   List<String> tags = [
     'ئاکشن',
     'کۆمیدیا',
+    'ڕۆمانسی',
     'تراژیدی',
     'غەمگین',
     'ترسناک',
@@ -65,7 +66,6 @@ class _EditPostState extends State<EditPost> {
     setState(() {
       _isLoading = true;
     });
-
     PostModel postModel = PostModel(
         likes: _likes!,
         views: _views!,
@@ -85,10 +85,12 @@ class _EditPostState extends State<EditPost> {
         tags: _tagsOfVideo!,
         trailer: _trailer!);
     updatePost(postModel);
+    // Navigator.pop(context);
   }
 
-  void updatePost(PostModel postModel) async {
+  updatePost(PostModel postModel) async {
     // Update on profile
+
     QuerySnapshot followerSnapshot =
         await followersRef.doc(postModel.userId).collection('Followers').get();
     try {
@@ -96,6 +98,9 @@ class _EditPostState extends State<EditPost> {
         print('No Followers');
       } else {
         for (var docSnapshot in followerSnapshot.docs) {
+          setState(() {
+            _isLoading = true;
+          });
           await followingPostsRef
               .doc(docSnapshot.id)
               .collection('posts')
@@ -115,13 +120,19 @@ class _EditPostState extends State<EditPost> {
             "tags": postModel.tags,
             "trailer": postModel.trailer,
             "imdbRating": postModel.imdbRating
-          }).whenComplete(() => print('succsufully upDate on Timeline'));
+          }).whenComplete(() {
+            setState(() {
+              _isLoading = false;
+            });
+          });
         }
       }
     } catch (e) {
-      print(e);
+      Fluttertoast.showToast(msg: "$e", backgroundColor: errorColor);
     }
-
+    setState(() {
+      _isLoading = true;
+    });
     await postsRef
         .doc(postModel.userId)
         .collection("userPosts")
@@ -141,8 +152,14 @@ class _EditPostState extends State<EditPost> {
       "tags": postModel.tags,
       "trailer": postModel.trailer,
       "imdbRating": postModel.imdbRating
+    }).whenComplete(() {
+      setState(() {
+        _isLoading = false;
+      });
     });
-
+    setState(() {
+      _isLoading = true;
+    });
     await newMoviesRef.doc(postModel.postuid).update({
       "description": postModel.description,
       "video": postModel.video,
@@ -158,6 +175,13 @@ class _EditPostState extends State<EditPost> {
       "tags": postModel.tags,
       "trailer": postModel.trailer,
       "imdbRating": postModel.imdbRating
+    }).whenComplete(() {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+    setState(() {
+      _isLoading = true;
     });
     await recommendedRef.doc(postModel.postuid).update({
       "description": postModel.description,
@@ -174,6 +198,13 @@ class _EditPostState extends State<EditPost> {
       "tags": postModel.tags,
       "trailer": postModel.trailer,
       "imdbRating": postModel.imdbRating
+    }).whenComplete(() {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+    setState(() {
+      _isLoading = true;
     });
     await explorersRef.doc(postModel.postuid).update({
       "description": postModel.description,
@@ -190,12 +221,14 @@ class _EditPostState extends State<EditPost> {
       "tags": postModel.tags,
       "trailer": postModel.trailer,
       "imdbRating": postModel.imdbRating
-    });
-    setState(() {
+    }).whenComplete(() {
+      setState(() {
+        _isLoading = false;
+      });
       Fluttertoast.showToast(
           timeInSecForIosWeb: 3,
           msg: '${postModel.title} successfully updated!');
-      _isLoading = false;
+      Navigator.pop(context);
     });
   }
 

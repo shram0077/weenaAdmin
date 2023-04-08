@@ -59,6 +59,7 @@ class _UploadState extends State<Upload> {
   List<String> tags = [
     'ئاکشن',
     'کۆمیدیا',
+    'ڕۆمانسی',
     'تراژیدی',
     'غەمگین',
     'ترسناک',
@@ -619,6 +620,9 @@ class _UploadState extends State<Upload> {
                       0,
                       0);
                 } else if (_typeMovie == 'Series') {
+                  setState(() {
+                    _loading = true;
+                  });
                   DatabaseServices.uploadToProfile(
                       _userId!,
                       uuid,
@@ -634,7 +638,13 @@ class _UploadState extends State<Upload> {
                       imdbRating!,
                       0,
                       0);
+                  setState(() {
+                    _loading = false;
+                  });
                 } else if (_typeMovie == 'Movie') {
+                  setState(() {
+                    _loading = true;
+                  });
                   DatabaseServices.uploadToProfile(
                       _userId!,
                       uuid,
@@ -650,10 +660,16 @@ class _UploadState extends State<Upload> {
                       imdbRating!,
                       0,
                       0);
+                  setState(() {
+                    _loading = false;
+                  });
                 }
               }
               if (_uploadToNewMovies == true) {
                 if (_typeMovie == 'Drama') {
+                  setState(() {
+                    _loading = true;
+                  });
                   DatabaseServices.uploadToNewMovies(
                       _userId!,
                       uuid,
@@ -669,7 +685,13 @@ class _UploadState extends State<Upload> {
                       imdbRating!,
                       0,
                       0);
+                  setState(() {
+                    _loading = false;
+                  });
                 } else if (_typeMovie == 'Series') {
+                  setState(() {
+                    _loading = true;
+                  });
                   DatabaseServices.uploadToNewMovies(
                       _userId!,
                       uuid,
@@ -685,7 +707,13 @@ class _UploadState extends State<Upload> {
                       imdbRating!,
                       0,
                       0);
+                  setState(() {
+                    _loading = false;
+                  });
                 } else if (_typeMovie == 'Movie') {
+                  setState(() {
+                    _loading = true;
+                  });
                   DatabaseServices.uploadToNewMovies(
                       _userId!,
                       uuid,
@@ -701,9 +729,15 @@ class _UploadState extends State<Upload> {
                       imdbRating!,
                       0,
                       0);
+                  setState(() {
+                    _loading = false;
+                  });
                 }
               }
               if (_uploadToFollowersTimeline == true) {
+                setState(() {
+                  _loading = true;
+                });
                 DatabaseServices.uploadToFollowersTimeline(
                     _userId!,
                     uuid,
@@ -719,7 +753,13 @@ class _UploadState extends State<Upload> {
                     imdbRating!,
                     0,
                     0);
+                setState(() {
+                  _loading = false;
+                });
               } else if (_typeMovie == 'Series') {
+                setState(() {
+                  _loading = true;
+                });
                 DatabaseServices.uploadToFollowersTimeline(
                     _userId!,
                     uuid,
@@ -735,7 +775,13 @@ class _UploadState extends State<Upload> {
                     imdbRating!,
                     0,
                     0);
+                setState(() {
+                  _loading = false;
+                });
               } else if (_typeMovie == 'Movie') {
+                setState(() {
+                  _loading = true;
+                });
                 DatabaseServices.uploadToFollowersTimeline(
                     _userId!,
                     uuid,
@@ -751,6 +797,9 @@ class _UploadState extends State<Upload> {
                     imdbRating!,
                     0,
                     0);
+                setState(() {
+                  _loading = false;
+                });
               } else {
                 Fluttertoast.showToast(msg: 'no selected any options');
               }
@@ -758,7 +807,7 @@ class _UploadState extends State<Upload> {
                 _loading = false;
               });
             } catch (e) {
-              print(e);
+              Fluttertoast.showToast(msg: "$e", backgroundColor: errorColor);
             }
           }
         },
