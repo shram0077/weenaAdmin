@@ -23,9 +23,10 @@ class AuthService {
     }
   }
 
-  static void logout() async {
+  static void logout(ctx) async {
     try {
       _auth.signOut();
+      Navigator.of(ctx).push(MaterialPageRoute(builder: (context) => Login()));
     } catch (e) {
       Fluttertoast.showToast(msg: "@e");
     }

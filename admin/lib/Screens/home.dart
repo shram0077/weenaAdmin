@@ -1,9 +1,11 @@
 import 'package:admin/Constant/constant.dart';
 import 'package:admin/Screens/Dashboard/dashboard.dart';
+import 'package:admin/Screens/Login/login.dart';
 import 'package:admin/Screens/Post/Dramas/dramas.dart';
 import 'package:admin/Screens/Post/Explorer/explorer.dart';
 import 'package:admin/Screens/Post/NewMovies/newMovies.dart';
 import 'package:admin/Screens/Post/Reccomends/Reccomends.dart';
+import 'package:admin/Screens/Reports/reports.dart';
 import 'package:admin/Screens/Upload/upload.dart';
 import 'package:admin/Screens/Users/users.dart';
 import 'package:admin/Services/Auth.dart';
@@ -58,6 +60,11 @@ class _HomeState extends State<Home> {
           _selectedScreen = Explorer();
         });
         break;
+      case Reports.id:
+        setState(() {
+          _selectedScreen = Reports();
+        });
+        break;
     }
   }
 
@@ -66,6 +73,7 @@ class _HomeState extends State<Home> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     AuthService.getScreenId();
   }
 
@@ -118,6 +126,8 @@ class _HomeState extends State<Home> {
               route: Explorer.id,
               icon: Icons.explore,
             ),
+            AdminMenuItem(
+                title: 'Reports', route: Reports.id, icon: Icons.report)
           ],
           selectedRoute: Home.id,
           iconColor: whiteColor,
@@ -154,7 +164,9 @@ class _HomeState extends State<Home> {
                     ),
                     IconButton(
                         onPressed: () {
-                          AuthService.logout();
+                          setState(() {
+                            AuthService.logout(context);
+                          });
                         },
                         icon: Icon(
                           Icons.logout,

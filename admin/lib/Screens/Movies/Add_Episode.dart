@@ -40,6 +40,7 @@ class _AddEpisodeState extends State<AddEpisode> {
           print('NO HAVE ANY SERIES');
           setState(() {
             lastEpisode = 2;
+            _loading = false;
           });
         } else {
           lastEpisode = otherSeries.last.episode;
@@ -145,7 +146,7 @@ class _AddEpisodeState extends State<AddEpisode> {
                               });
                             });
                           } else {
-                            if (_loading = true) {
+                            if (_loading) {
                               Fluttertoast.showToast(msg: 'in process');
                             } else {
                               addOtherseries(widget.postModel);

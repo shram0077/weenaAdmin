@@ -6,6 +6,7 @@ import 'package:admin/Screens/Movies/EditeDrama_s/EditDramas.dart';
 import 'package:admin/Screens/Movies/MoviePageButtons.dart';
 import 'package:admin/Screens/Movies/TrailerDialog.dart';
 import 'package:admin/Screens/Movies/VideoPlayer.dart';
+import 'package:admin/Screens/Upload/Add%20Series.dart';
 import 'package:admin/Services/Database.dart';
 import 'package:admin/widgets/widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -254,7 +255,7 @@ class _MoviePageState extends State<MoviePage> {
                           )
                         ],
                       ),
-                      widget.postModel.type == "Drama"
+                      widget.postModel.type == "Series"
                           ? GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -604,6 +605,25 @@ class _MoviePageState extends State<MoviePage> {
                         },
                       )
                     : const SizedBox(),
+                widget.postModel.type == 'Series'
+                    ? TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: AddSeries(
+                                    postModel: widget.postModel,
+                                  )));
+                        },
+                        child: Text(
+                          'Add Series',
+                          style: GoogleFonts.barlow(
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600),
+                        ))
+                    : SizedBox()
               ],
             )),
           )

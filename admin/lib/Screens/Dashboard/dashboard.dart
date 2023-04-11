@@ -41,7 +41,7 @@ class _DashboardState extends State<Dashboard> {
   }
 
   getMoviesCount() async {
-    int count = await DatabaseServices.getUsersCount();
+    int count = await DatabaseServices.getMoviesCount();
     if (mounted) {
       setState(() {
         _moviesCount = count;

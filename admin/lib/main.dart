@@ -4,6 +4,7 @@ import 'package:admin/Screens/Login/login.dart';
 import 'package:admin/Screens/Post/Explorer/explorer.dart';
 import 'package:admin/Screens/Post/NewMovies/newMovies.dart';
 import 'package:admin/Screens/Post/Reccomends/Reccomends.dart';
+import 'package:admin/Screens/Reports/reports.dart';
 import 'package:admin/Screens/Users/users.dart';
 import 'package:admin/Screens/home.dart';
 import 'package:admin/Services/Auth.dart';
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
         Dashboard.id: (context) => Dashboard(),
         Home.id: (context) => Home(),
         NewMovies.id: (context) => NewMovies(),
-        Explorer.id: (context) => Explorer()
+        Explorer.id: (context) => Explorer(),
+        Reports.id: (context) => Reports(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Weena-Admin',

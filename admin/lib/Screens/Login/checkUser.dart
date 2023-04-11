@@ -53,7 +53,7 @@ class _CheckUserState extends State<CheckUser> {
               }
               UserModell userModel = UserModell.fromDoc(snapshot.data);
               if (!userModel.admin) {
-                AuthService.logout();
+                AuthService.logout(context);
                 Navigator.pop(context);
                 Fluttertoast.showToast(msg: "Only Admin's can login");
                 setState(() {});

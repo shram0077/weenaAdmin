@@ -44,3 +44,4 @@ final linksRef = _fireStore.collection('links');
 final viewsRef = _fireStore.collection('views');
 final commentsRef = _fireStore.collection('comments');
 final seriesRef = _fireStore.collection('series');
+final movieReportsRef = _fireStore.collection('movieReports');

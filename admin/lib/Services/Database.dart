@@ -1,6 +1,7 @@
 import 'package:admin/Constant/constant.dart';
 import 'package:admin/Models/CommentModel.dart';
 import 'package:admin/Models/Post.dart';
+import 'package:admin/Models/ReportModel.dart';
 import 'package:admin/Models/SeriesModel.dart';
 import 'package:admin/Models/userModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -35,6 +36,12 @@ class DatabaseServices {
   static Future<int> getUsersCount() async {
     QuerySnapshot usersSnap = await usersRef.get();
     return usersSnap.docs.length;
+  }
+
+// Get Users Count
+  static Future<int> getMoviesCount() async {
+    QuerySnapshot moviesSnap = await newMoviesRef.get();
+    return moviesSnap.docs.length;
   }
 
 // Get Most Papular Movies
@@ -89,6 +96,18 @@ class DatabaseServices {
         userPostsSnap.docs.map((doc) => PostModel.fromDoc(doc)).toList();
 
     return userPosts;
+  }
+
+// Get Reports
+  static Future<List<ReportModel>> getReports() async {
+    QuerySnapshot reportsSnap = await movieReportsRef
+        .doc('a7be467f-1249-416e-a55a-f91fb126f79e')
+        .collection('Reports')
+        .orderBy('Timestamp', descending: true)
+        .get();
+    List<ReportModel> reports =
+        reportsSnap.docs.map((doc) => ReportModel.fromDoc(doc)).toList();
+    return reports;
   }
 
   // Get Reccomended Post
