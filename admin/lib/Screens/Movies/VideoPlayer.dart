@@ -1,12 +1,10 @@
 import 'package:admin/Constant/constant.dart';
 import 'package:admin/Models/Post.dart';
-import 'package:admin/Models/userModel.dart';
 import 'package:admin/Screens/Movies/Comment/comment.dart';
 import 'package:admin/Screens/Movies/OtherParts.dart';
 import 'package:admin/Services/Database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:pod_player/pod_player.dart';
@@ -171,109 +169,123 @@ class _VideoPlayerState extends State<VideoPlayer> {
                   bottomLeft: Radius.circular(25),
                   bottomRight: Radius.circular(25)),
             ),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Like
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: shadowColor.withOpacity(0.1)),
-                            child: Icon(
-                              Icons.favorite_border,
-                              color: Colors.white,
-                              size: 24,
+            child: Column(
+              children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Like
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: shadowColor.withOpacity(0.1)),
+                                child: Icon(
+                                  Icons.favorite_border,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
+                              ),
                             ),
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4.0),
+                              child: Text(
+                                _likes.toString(),
+                                style: GoogleFonts.barlow(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            )
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4.0),
-                          child: Text(
-                            _likes.toString(),
-                            style: GoogleFonts.barlow(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  // Comment
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            _controller!.pause();
-                            Navigator.push(
-                                context,
-                                PageTransition(
-                                    type: PageTransitionType.bottomToTop,
-                                    child: Comments(
-                                      currentUserId: widget.currentUserId,
-                                      postModel: widget.postModel,
-                                    )));
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: shadowColor.withOpacity(0.1)),
-                            child: const Icon(
-                              CupertinoIcons.chat_bubble,
-                              color: Colors.white,
-                              size: 24,
+                      ),
+                      // Comment
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                _controller!.pause();
+                                Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        type: PageTransitionType.bottomToTop,
+                                        child: Comments(
+                                          currentUserId: widget.currentUserId,
+                                          postModel: widget.postModel,
+                                        )));
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: shadowColor.withOpacity(0.1)),
+                                child: const Icon(
+                                  CupertinoIcons.chat_bubble,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
+                              ),
                             ),
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4.0),
+                              child: Text(
+                                widget.commentCount.toString(),
+                                style: GoogleFonts.barlow(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            )
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4.0),
+                      ),
+                    ]),
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: shadowColor,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Center(
                           child: Text(
-                            widget.commentCount.toString(),
-                            style: GoogleFonts.barlow(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        )
-                      ],
+                        'Vidmoly',
+                        style: TextStyle(color: whiteColor),
+                      )),
                     ),
-                  ),
-
-                  // Report
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: shadowColor.withOpacity(0.1)),
-                              child: const Icon(
-                                CupertinoIcons.info,
-                                size: 24,
-                                color: Colors.white,
-                              )),
-                        ),
-                        Text(
-                          'Report',
-                          style: GoogleFonts.barlow(
-                              color: Colors.white, fontWeight: FontWeight.w500),
-                        )
-                      ],
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: shadowColor,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Center(
+                          child: Text(
+                        'TeraBox',
+                        style: TextStyle(color: whiteColor),
+                      )),
                     ),
-                  ),
-                ]),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: shadowColor,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Center(
+                          child: Text(
+                        'GoogleDrive',
+                        style: TextStyle(color: whiteColor),
+                      )),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
           const Divider(
             color: Colors.white,

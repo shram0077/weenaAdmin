@@ -48,10 +48,7 @@ class _ReportsState extends State<Reports> {
           ),
         ),
         body: FutureBuilder(
-            future: movieReportsRef
-                .doc("a7be467f-1249-416e-a55a-f91fb126f79e")
-                .collection('Reports')
-                .get(),
+            future: movieReportsRef.get(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (!snapshot.hasData) {
                 return Padding(

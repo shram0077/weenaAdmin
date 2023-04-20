@@ -255,7 +255,7 @@ class _MoviePageState extends State<MoviePage> {
                           )
                         ],
                       ),
-                      widget.postModel.type == "Series"
+                      widget.postModel.type == "Drama"
                           ? GestureDetector(
                               onTap: () {
                                 Navigator.push(
