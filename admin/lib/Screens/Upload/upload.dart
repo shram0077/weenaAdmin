@@ -44,6 +44,8 @@ class _UploadState extends State<Upload> {
     'Drama',
     'Series',
     'Animation and Carton'
+        'India',
+    'Korea , China , Japanes'
   ];
   String? _typeMovie;
   List<String> userdIds = [
@@ -52,28 +54,11 @@ class _UploadState extends State<Upload> {
     "hhieHehYJFY23GMvbwmvh6Qx7TE3",
   ];
   List<String> usernames = [
-    "wenna",
+    "weena",
     "shram",
     "mdx079",
   ];
-  List<String> tags = [
-    'ئاکشن',
-    'کۆمیدیا',
-    'ڕۆمانسی',
-    'تراژیدی',
-    'غەمگین',
-    'ترسناک',
-    'نهێنی',
-    'گەڕان',
-    'سەرکێشی',
-    'تەکنەلۆجیا',
-    'خەیاڵی زانستی',
-    'زیرەکی',
-    'تاوانکاری',
-    'ئه‌نیمه‌یشن',
-    'دراما',
-    'خێزانی',
-  ];
+
   List<String> resultTags = [];
   checkUserId() async {
     String userID = await DatabaseServices.checkUserId(userIdController.text);

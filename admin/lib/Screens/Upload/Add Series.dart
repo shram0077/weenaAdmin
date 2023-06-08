@@ -1,6 +1,7 @@
 import 'package:admin/Constant/constant.dart';
 import 'package:admin/Models/Post.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddSeries extends StatefulWidget {
@@ -204,6 +205,14 @@ class _AddSeriesState extends State<AddSeries> {
                     "video": videoURL,
                     "episode": _episode,
                     "thumbnail": thumbnail
+                  }).whenComplete(() {
+                    setState(() {
+                      sessionController.clear();
+                      episodeController.clear();
+                      thumbnailController.clear();
+                      videoUrlController.clear();
+                      Fluttertoast.showToast(msg: 'Uploaded!');
+                    });
                   });
                 });
               },

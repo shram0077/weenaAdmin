@@ -98,18 +98,6 @@ class DatabaseServices {
     return userPosts;
   }
 
-// Get Reports
-  static Future<List<ReportModel>> getReports() async {
-    QuerySnapshot reportsSnap = await movieReportsRef
-        .doc('a7be467f-1249-416e-a55a-f91fb126f79e')
-        .collection('Reports')
-        .orderBy('Timestamp', descending: true)
-        .get();
-    List<ReportModel> reports =
-        reportsSnap.docs.map((doc) => ReportModel.fromDoc(doc)).toList();
-    return reports;
-  }
-
   // Get Reccomended Post
   static Future<List<PostModel>> getRecommendedPost() async {
     QuerySnapshot userPostsSnap =

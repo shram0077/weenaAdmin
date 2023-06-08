@@ -45,3 +45,25 @@ final viewsRef = _fireStore.collection('views');
 final commentsRef = _fireStore.collection('comments');
 final seriesRef = _fireStore.collection('series');
 final movieReportsRef = _fireStore.collection('movieReports');
+// Tags
+final tags = [
+  'ئاکشن',
+  'کۆمیدیا',
+  'ڕۆمانسی',
+  'تراژیدی',
+  'غەمگین',
+  'ترسناک',
+  'نهێنی',
+  'گەڕان',
+  'سەرکێشی',
+  'تەکنەلۆجیا',
+  'خەیاڵی زانستی',
+  'زیرەکی',
+  'تاوانکاری',
+  'ئه‌نیمه‌یشن',
+  'دراما',
+  'خێزانی',
+  'کۆری',
+  'یابانی',
+  'چیرۆكی هه‌ستبزوێن',
+];

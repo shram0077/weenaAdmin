@@ -35,25 +35,7 @@ class _EditPostState extends State<EditPost> {
   double? _imdbRating;
   int? _likes;
   int? _views;
-  //
-  List<String> tags = [
-    'ئاکشن',
-    'کۆمیدیا',
-    'ڕۆمانسی',
-    'تراژیدی',
-    'غەمگین',
-    'ترسناک',
-    'نهێنی',
-    'گەڕان',
-    'سەرکێشی',
-    'تەکنەلۆجیا',
-    'خەیاڵی زانستی',
-    'زیرەکی',
-    'تاوانکاری',
-    'ئه‌نیمه‌یشن',
-    'دراما',
-    'خێزانی'
-  ];
+
   String? _typeMovie;
   List<String> listOfValue = [
     'Movie',

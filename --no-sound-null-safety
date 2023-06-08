@@ -1,0 +1,345 @@
+[1:24:33 AM]: Spawning C:\src\flutter\bin\flutter.bat with args ["run","--machine","--start-paused","-d","chrome","--devtools-server-address","http://127.0.0.1:9100/","--target","lib\\main.dart"]
+[1:24:33 AM]: ..  in C:\Users\shram\OneDrive\Desktop\WEENA-PROJECTS\WEENA\Weena-admin-WEB\admin
+[1:24:33 AM]: ..  with {"toolEnv":{"FLUTTER_HOST":"VSCode","PUB_ENVIRONMENT":"vscode.dart-code"}}
+[1:24:33 AM]: PID: 6632
+[1:24:35 AM]: <== [{"event":"daemon.connected","params":{"version":"0.6.1","pid":9172}}]
+[1:24:35 AM]: <== [{"event":"app.start","params":{"appId":"d27701f4-d565-43d5-af9d-be548fe3ad7c","deviceId":"chrome","directory":"C:\\Users\\shram\\OneDrive\\Desktop\\WEENA-PROJECTS\\WEENA\\Weena-admin-WEB\\admin","supportsRestart":true,"launchMode":"run","mode":"debug"}}]
+[1:24:35 AM]: <== Launching lib\main.dart on Chrome in debug mode...
+[1:24:36 AM]: <== [{"event":"app.progress","params":{"appId":"d27701f4-d565-43d5-af9d-be548fe3ad7c","id":"0","progressId":null,"message":"Waiting for connection from debug service on Chrome...","finished":false}}]
+[1:25:19 AM]: <== [{"event":"app.progress","params":{"appId":"d27701f4-d565-43d5-af9d-be548fe3ad7c","id":"0","progressId":null,"finished":true}}]
+[1:25:20 AM]: <== [{"event":"app.webLaunchUrl","params":{"url":"http://localhost:63729","launched":true}}]
+[1:25:30 AM]: <== This app is linked to the debug service: ws://127.0.0.1:63782/rUE8ItUeSN0=/ws
+[1:25:30 AM]: <== Debug service listening on ws://127.0.0.1:63782/rUE8ItUeSN0=/ws
+[1:25:30 AM]: <== [{"event":"app.started","params":{"appId":"d27701f4-d565-43d5-af9d-be548fe3ad7c"}}]
+[1:25:30 AM]: <== [{"event":"app.debugPort","params":{"appId":"d27701f4-d565-43d5-af9d-be548fe3ad7c","port":63782,"wsUri":"ws://127.0.0.1:63782/rUE8ItUeSN0=/ws"}}]
+[1:26:10 AM]: <== ══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+[1:26:10 AM]: <== The following assertion was thrown during layout:
+[1:26:10 AM]: <== A RenderFlex overflowed by 7.2 pixels on the right.
+[1:26:10 AM]: <== The relevant error-causing widget was:
+[1:26:10 AM]: <==   Row
+[1:26:10 AM]: <==   Row:file:///C:/Users/shram/OneDrive/Desktop/WEENA-PROJECTS/WEENA/Weena-admin-WEB/admin/lib/Screens/Dashboard/dashboard.dart:277:35
+[1:26:10 AM]: <== To inspect this widget in Flutter DevTools, visit:
+[1:26:10 AM]: <== http://127.0.0.1:9100/#/inspector?uri=http%3A%2F%2F127.0.0.1%3A63782%2FrUE8ItUeSN0%3D&inspectorRef=inspector-0
+[1:26:10 AM]: <== The overflowing RenderFlex has an orientation of Axis.horizontal.
+[1:26:10 AM]: <== The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+[1:26:10 AM]: <== black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+[1:26:10 AM]: <== Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+[1:26:10 AM]: <== RenderFlex to fit within the available space instead of being sized to their natural size.
+[1:26:10 AM]: <== This is considered an error condition because it indicates that there is content that cannot be
+[1:26:10 AM]: <== seen. If the content is legitimately bigger than the available space, consider clipping it with a
+[1:26:10 AM]: <== ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+[1:26:10 AM]: <== like a ListView.
+[1:26:10 AM]: <== The specific RenderFlex in question is: RenderFlex#403b2 relayoutBoundary=up31 OVERFLOWING:
+[1:26:10 AM]: <==   creator: Row ← Column ← Padding ← Semantics ← DefaultTextStyle ← AnimatedDefaultTextStyle ←
+[1:26:10 AM]: <==     _InkFeatures-[GlobalKey#261e4 ink renderer] ← NotificationListener<LayoutChangedNotification> ←
+[1:26:10 AM]: <==     CustomPaint ← _ShapeBorderPaint ← PhysicalShape ← _MaterialInterior ← ⋯
+[1:26:10 AM]: <==   parentData: offset=Offset(0.0, 0.0); flex=null; fit=null (can use size)
+[1:26:10 AM]: <==   constraints: BoxConstraints(0.0<=w<=117.8, 0.0<=h<=Infinity)
+[1:26:10 AM]: <==   size: Size(117.8, 30.0)
+[1:26:10 AM]: <==   direction: horizontal
+[1:26:10 AM]: <==   mainAxisAlignment: start
+[1:26:10 AM]: <==   mainAxisSize: max
+[1:26:10 AM]: <==   crossAxisAlignment: center
+[1:26:10 AM]: <==   textDirection: ltr
+[1:26:10 AM]: <==   verticalDirection: down
+[1:26:10 AM]: <== ◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+[1:26:10 AM]: <== ════════════════════════════════════════════════════════════════════════════════════════════════════
+[1:26:10 AM]: <== Another exception was thrown: A RenderFlex overflowed by 22 pixels on the right.
+[1:26:10 AM]: <== Another exception was thrown: A RenderFlex overflowed by 12 pixels on the right.
+[1:26:11 AM]: <== 8
+[1:26:11 AM]: <== 12
+[1:26:11 AM]: <== (Instance of 'UserModell', Instance of 'UserModell', Instance of 'UserModell')
+[1:26:11 AM]: <== (Instance of 'UserModell', Instance of 'UserModell')
+[1:26:11 AM]: <== Another exception was thrown: setState() or markNeedsBuild() called during build.
+[1:26:12 AM]: <== Another exception was thrown: A RenderFlex overflowed by 7.2 pixels on the right.
+[1:26:12 AM]: <== Another exception was thrown: A RenderFlex overflowed by 22 pixels on the right.
+[1:26:12 AM]: <== Another exception was thrown: A RenderFlex overflowed by 12 pixels on the right.
+[1:26:16 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:26:16 AM]: <== Error: Assertion failed: file:///C:/src/flutter/packages/flutter/lib/src/widgets/navigator.dart:2928:18
+[1:26:16 AM]: <== !navigator._debugLocked
+[1:26:16 AM]: <== is not true
+[1:26:16 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 288:49  throw_
+[1:26:16 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 29:3    assertFailed
+[1:26:16 AM]: <== packages/flutter/src/widgets/navigator.dart 2928:28                           <fn>
+[1:26:16 AM]: <== packages/flutter/src/scheduler/ticker.dart 420:15                             thunk
+[1:26:16 AM]: <== dart-sdk/lib/async/zone.dart 1661:54                                          runUnary
+[1:26:16 AM]: <== dart-sdk/lib/async/future_impl.dart 147:18                                    handleValue
+[1:26:16 AM]: <== dart-sdk/lib/async/future_impl.dart 784:44                                    handleValueCallback
+[1:26:16 AM]: <== dart-sdk/lib/async/future_impl.dart 813:13                                    _propagateToListeners
+[1:26:17 AM]: <== dart-sdk/lib/async/future_impl.dart 584:5                                     [_completeWithValue]
+[1:26:17 AM]: <== dart-sdk/lib/async/future_impl.dart 657:7                                     callback
+[1:26:17 AM]: <== dart-sdk/lib/async/schedule_microtask.dart 40:11                              _microtaskLoop
+[1:26:17 AM]: <== dart-sdk/lib/async/schedule_microtask.dart 49:5                               _startMicrotaskLoop
+[1:26:17 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/patch/async_patch.dart 177:15           <fn>
+[1:26:17 AM]: <== 8
+[1:26:17 AM]: <== 12
+[1:26:17 AM]: <== (Instance of 'UserModell', Instance of 'UserModell', Instance of 'UserModell')
+[1:26:17 AM]: <== (Instance of 'UserModell', Instance of 'UserModell')
+[1:26:17 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:26:17 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:26:17 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:26:17 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:26:20 AM]: <== Another exception was thrown: A RenderFlex overflowed by 15 pixels on the right.
+[1:26:20 AM]: <== Another exception was thrown: A RenderFlex overflowed by 5.0 pixels on the right.
+[1:26:20 AM]: <== 8
+[1:26:20 AM]: <== 8
+[1:26:20 AM]: <== 12
+[1:26:20 AM]: <== 12
+[1:26:21 AM]: <== (Instance of 'UserModell', Instance of 'UserModell', Instance of 'UserModell')
+[1:26:21 AM]: <== (Instance of 'UserModell', Instance of 'UserModell', Instance of 'UserModell')
+[1:26:21 AM]: <== (Instance of 'UserModell', Instance of 'UserModell')
+[1:26:21 AM]: <== (Instance of 'UserModell', Instance of 'UserModell')
+[1:26:23 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:26:24 AM]: <== Another exception was thrown: Assertion failed: file:///C:/src/flutter/packages/flutter/lib/src/widgets/navigator.dart:4532:12
+[1:26:24 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:26:24 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:26:24 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:26:26 AM]: ==> [{"id":"1","method":"app.restart","params":{"appId":"d27701f4-d565-43d5-af9d-be548fe3ad7c","fullRestart":true,"pause":true,"reason":"manual"}}]
+[1:26:26 AM]: <== [{"event":"app.progress","params":{"appId":"d27701f4-d565-43d5-af9d-be548fe3ad7c","id":"1","progressId":"hot.restart","message":"Performing hot restart...","finished":false}}]
+[1:26:26 AM]: <== [{"event":"app.progress","params":{"appId":"d27701f4-d565-43d5-af9d-be548fe3ad7c","id":"2","progressId":null,"message":"Waiting for connection from debug service on Chrome...","finished":false}}]
+[1:26:26 AM]: <== [{"event":"app.progress","params":{"appId":"d27701f4-d565-43d5-af9d-be548fe3ad7c","id":"2","progressId":null,"finished":true}}]
+[1:26:26 AM]: <== [{"event":"app.progress","params":{"appId":"d27701f4-d565-43d5-af9d-be548fe3ad7c","id":"1","progressId":"hot.restart","finished":true}}]
+[1:26:26 AM]: <== Restarted application in 344ms.
+[1:26:26 AM]: <== [{"id":"1","result":{"code":0,"message":""}}]
+[1:26:27 AM]: <== ══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+[1:26:27 AM]: <== The following assertion was thrown during layout:
+[1:26:27 AM]: <== A RenderFlex overflowed by 15 pixels on the right.
+[1:26:27 AM]: <== The relevant error-causing widget was:
+[1:26:27 AM]: <==   Row
+[1:26:27 AM]: <==   Row:file:///C:/Users/shram/OneDrive/Desktop/WEENA-PROJECTS/WEENA/Weena-admin-WEB/admin/lib/Screens/Dashboard/dashboard.dart:320:35
+[1:26:27 AM]: <== The overflowing RenderFlex has an orientation of Axis.horizontal.
+[1:26:27 AM]: <== The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+[1:26:27 AM]: <== black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+[1:26:27 AM]: <== Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+[1:26:27 AM]: <== RenderFlex to fit within the available space instead of being sized to their natural size.
+[1:26:27 AM]: <== This is considered an error condition because it indicates that there is content that cannot be
+[1:26:27 AM]: <== seen. If the content is legitimately bigger than the available space, consider clipping it with a
+[1:26:27 AM]: <== ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+[1:26:27 AM]: <== like a ListView.
+[1:26:27 AM]: <== The specific RenderFlex in question is: RenderFlex#7c3af relayoutBoundary=up32 OVERFLOWING:
+[1:26:27 AM]: <==   creator: Row ← Column ← Padding ← Semantics ← DefaultTextStyle ← AnimatedDefaultTextStyle ←
+[1:26:27 AM]: <==     _InkFeatures-[GlobalKey#a1925 ink renderer] ← NotificationListener<LayoutChangedNotification> ←
+[1:26:27 AM]: <==     CustomPaint ← _ShapeBorderPaint ← PhysicalShape ← _MaterialInterior ← ⋯
+[1:26:27 AM]: <==   parentData: offset=Offset(0.0, 0.0); flex=null; fit=null (can use size)
+[1:26:27 AM]: <==   constraints: BoxConstraints(0.0<=w<=125.0, 0.0<=h<=Infinity)
+[1:26:27 AM]: <==   size: Size(125.0, 30.0)
+[1:26:27 AM]: <==   direction: horizontal
+[1:26:27 AM]: <==   mainAxisAlignment: start
+[1:26:27 AM]: <==   mainAxisSize: max
+[1:26:27 AM]: <==   crossAxisAlignment: center
+[1:26:27 AM]: <==   textDirection: ltr
+[1:26:27 AM]: <==   verticalDirection: down
+[1:26:27 AM]: <== ◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+[1:26:27 AM]: <== ════════════════════════════════════════════════════════════════════════════════════════════════════
+[1:26:27 AM]: <== Another exception was thrown: A RenderFlex overflowed by 5.0 pixels on the right.
+[1:26:28 AM]: <== 8
+[1:26:28 AM]: <== 8
+[1:26:28 AM]: <== 12
+[1:26:28 AM]: <== 12
+[1:26:28 AM]: <== (Instance of 'UserModell', Instance of 'UserModell', Instance of 'UserModell')
+[1:26:28 AM]: <== (Instance of 'UserModell', Instance of 'UserModell', Instance of 'UserModell')
+[1:26:28 AM]: <== (Instance of 'UserModell', Instance of 'UserModell')
+[1:26:28 AM]: <== (Instance of 'UserModell', Instance of 'UserModell')
+[1:26:28 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:26:28 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:26:28 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:26:28 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:26:28 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:26:30 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:26:30 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:26:31 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:26:31 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:26:31 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:26:34 AM]: <== []
+[1:26:35 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:26:39 AM]: <== []
+[1:26:41 AM]: <== []
+[1:26:41 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:26:44 AM]: <== is not series
+[1:26:44 AM]: <== BoxConstraints(0.0<=w<=Infinity, 0.0<=h<=45.0)
+[1:26:45 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:26:45 AM]: <== BoxConstraints(0.0<=w<=Infinity, 0.0<=h<=45.0)
+[1:26:45 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:26:45 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:26:45 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:27:41 AM]: <== 8
+[1:27:41 AM]: <== 8
+[1:27:41 AM]: <== 12
+[1:27:41 AM]: <== 12
+[1:27:41 AM]: <== (Instance of 'UserModell', Instance of 'UserModell', Instance of 'UserModell')
+[1:27:41 AM]: <== (Instance of 'UserModell', Instance of 'UserModell', Instance of 'UserModell')
+[1:27:41 AM]: <== (Instance of 'UserModell', Instance of 'UserModell')
+[1:27:41 AM]: <== (Instance of 'UserModell', Instance of 'UserModell')
+[1:27:42 AM]: <== ══╡ EXCEPTION CAUGHT BY IMAGE RESOURCE SERVICE ╞════════════════════════════════════════════════════
+[1:27:42 AM]: <== The following ImageCodecException was thrown resolving an image codec:
+[1:27:42 AM]: <== Failed to load network image.
+[1:27:42 AM]: <== Image URL: https://www.themoviedb.org/t/p/w342/sJKcpT5LRuCdGpWm29yH2bMWqT0.jpg
+[1:27:42 AM]: <== Trying to load an image from another domain? Find answers at:
+[1:27:42 AM]: <== https://flutter.dev/docs/development/platform-integration/web-images
+[1:27:42 AM]: <== When the exception was thrown, this was the stack:
+[1:27:42 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 288:49  throw_
+[1:27:42 AM]: <== lib/_engine/engine/canvaskit/image.dart 188:5                                 fetchImage
+[1:27:42 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/patch/async_patch.dart 60:31            <fn>
+[1:27:42 AM]: <== dart-sdk/lib/async/zone.dart 1666:54                                          runBinary
+[1:27:42 AM]: <== dart-sdk/lib/async/future_impl.dart 162:22                                    handleError
+[1:27:42 AM]: <== dart-sdk/lib/async/future_impl.dart 796:46                                    handleError
+[1:27:42 AM]: <== dart-sdk/lib/async/future_impl.dart 817:13                                    _propagateToListeners
+[1:27:42 AM]: <== dart-sdk/lib/async/future_impl.dart 592:5                                     [_completeError]
+[1:27:42 AM]: <== dart-sdk/lib/async/future_impl.dart 683:7                                     callback
+[1:27:42 AM]: <== dart-sdk/lib/async/schedule_microtask.dart 40:11                              _microtaskLoop
+[1:27:42 AM]: <== dart-sdk/lib/async/schedule_microtask.dart 49:5                               _startMicrotaskLoop
+[1:27:42 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/patch/async_patch.dart 177:15           <fn>
+[1:27:42 AM]: <== Image provider:
+[1:27:42 AM]: <== CachedNetworkImageProvider("https://www.themoviedb.org/t/p/w342/sJKcpT5LRuCdGpWm29yH2bMWqT0.jpg",
+[1:27:42 AM]: <== scale: 1)
+[1:27:42 AM]: <==  Image key:
+[1:27:42 AM]: <== CachedNetworkImageProvider("https://www.themoviedb.org/t/p/w342/sJKcpT5LRuCdGpWm29yH2bMWqT0.jpg",
+[1:27:42 AM]: <== scale: 1):
+[1:27:42 AM]: <==   CachedNetworkImageProvider("https://www.themoviedb.org/t/p/w342/sJKcpT5LRuCdGpWm29yH2bMWqT0.jpg",
+[1:27:42 AM]: <==   scale: 1)
+[1:27:42 AM]: <== ════════════════════════════════════════════════════════════════════════════════════════════════════
+[1:27:42 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:27:42 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:27:42 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:27:42 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:27:45 AM]: <== [Instance of 'PostModel']
+[1:27:45 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:27:52 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:27:52 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:27:52 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:27:52 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:27:52 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:27:56 AM]: <== Drama Count: 0
+[1:28:12 AM]: <== 8
+[1:28:12 AM]: <== 8
+[1:28:12 AM]: <== 12
+[1:28:12 AM]: <== 12
+[1:28:12 AM]: <== (Instance of 'UserModell', Instance of 'UserModell', Instance of 'UserModell')
+[1:28:12 AM]: <== (Instance of 'UserModell', Instance of 'UserModell', Instance of 'UserModell')
+[1:28:12 AM]: <== (Instance of 'UserModell', Instance of 'UserModell')
+[1:28:12 AM]: <== (Instance of 'UserModell', Instance of 'UserModell')
+[1:28:13 AM]: <== ══╡ EXCEPTION CAUGHT BY IMAGE RESOURCE SERVICE ╞════════════════════════════════════════════════════
+[1:28:13 AM]: <== The following ImageCodecException was thrown resolving an image codec:
+[1:28:13 AM]: <== Failed to load network image.
+[1:28:13 AM]: <== Image URL: https://www.themoviedb.org/t/p/w342/sJKcpT5LRuCdGpWm29yH2bMWqT0.jpg
+[1:28:13 AM]: <== Trying to load an image from another domain? Find answers at:
+[1:28:13 AM]: <== https://flutter.dev/docs/development/platform-integration/web-images
+[1:28:13 AM]: <== When the exception was thrown, this was the stack:
+[1:28:13 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 288:49  throw_
+[1:28:13 AM]: <== lib/_engine/engine/canvaskit/image.dart 188:5                                 fetchImage
+[1:28:13 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/patch/async_patch.dart 60:31            <fn>
+[1:28:13 AM]: <== dart-sdk/lib/async/zone.dart 1666:54                                          runBinary
+[1:28:13 AM]: <== dart-sdk/lib/async/future_impl.dart 162:22                                    handleError
+[1:28:13 AM]: <== dart-sdk/lib/async/future_impl.dart 796:46                                    handleError
+[1:28:13 AM]: <== dart-sdk/lib/async/future_impl.dart 817:13                                    _propagateToListeners
+[1:28:13 AM]: <== dart-sdk/lib/async/future_impl.dart 592:5                                     [_completeError]
+[1:28:13 AM]: <== dart-sdk/lib/async/future_impl.dart 683:7                                     callback
+[1:28:13 AM]: <== dart-sdk/lib/async/schedule_microtask.dart 40:11                              _microtaskLoop
+[1:28:13 AM]: <== dart-sdk/lib/async/schedule_microtask.dart 49:5                               _startMicrotaskLoop
+[1:28:13 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/patch/async_patch.dart 177:15           <fn>
+[1:28:13 AM]: <== Image provider:
+[1:28:13 AM]: <== CachedNetworkImageProvider("https://www.themoviedb.org/t/p/w342/sJKcpT5LRuCdGpWm29yH2bMWqT0.jpg",
+[1:28:13 AM]: <== scale: 1)
+[1:28:13 AM]: <==  Image key:
+[1:28:13 AM]: <== CachedNetworkImageProvider("https://www.themoviedb.org/t/p/w342/sJKcpT5LRuCdGpWm29yH2bMWqT0.jpg",
+[1:28:13 AM]: <== scale: 1):
+[1:28:13 AM]: <==   CachedNetworkImageProvider("https://www.themoviedb.org/t/p/w342/sJKcpT5LRuCdGpWm29yH2bMWqT0.jpg",
+[1:28:13 AM]: <==   scale: 1)
+[1:28:13 AM]: <== ════════════════════════════════════════════════════════════════════════════════════════════════════
+[1:28:13 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:28:13 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:28:13 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:28:13 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:28:14 AM]: <== Another exception was thrown: NoSuchMethodError: 'docs'
+[1:28:18 AM]: <== Another exception was thrown: Incorrect use of ParentDataWidget.
+[1:28:18 AM]: <== Another exception was thrown: Incorrect use of ParentDataWidget.
+[1:28:19 AM]: <== BoxConstraints(0.0<=w<=Infinity, 0.0<=h<=45.0)
+[1:28:20 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:28:20 AM]: <== BoxConstraints(0.0<=w<=Infinity, 0.0<=h<=45.0)
+[1:28:20 AM]: <== SeriesList: []
+[1:28:20 AM]: <== BoxConstraints(0.0<=w<=Infinity, 0.0<=h<=45.0)
+[1:28:21 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:21 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:21 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:21 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:21 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:21 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:21 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:21 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:21 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:21 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:21 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:21 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:22 AM]: <== 1
+[1:28:23 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:23 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:23 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:23 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:25 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:25 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:25 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:25 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:25 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:25 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:25 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:25 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:25 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:25 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:25 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:25 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:26 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:26 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:26 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:26 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:26 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:26 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:29 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:29 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:28:29 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:28:29 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:29:27 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:29:27 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:29:28 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:29:28 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:29:29 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:29:29 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:29:30 AM]: <== 1
+[1:29:31 AM]: <== 1
+[1:29:31 AM]: <== 1
+[1:29:31 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:29:31 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:29:31 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/images/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:29:31 AM]: <== Another exception was thrown: Unable to load asset: "assets/images/imdb.png".
+[1:29:35 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:29:35 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:29:35 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:29:35 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:29:35 AM]: <== Another exception was thrown: [object ProgressEvent]
+[1:29:37 AM]: <== [Instance of 'PostModel', Instance of 'PostModel', Instance of 'PostModel', Instance of 'PostModel', Instance of 'PostModel', Instance of 'PostModel', Instance of 'PostModel', Instance of 'PostModel', Instance of 'PostModel', Instance of 'PostModel', Instance of 'PostModel']
+[1:29:37 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:29:41 AM]: <== Error while trying to load an asset: Flutter Web engine failed to fetch "assets/assets/icons/imdb.png". HTTP request succeeded, but the server responded with HTTP status 404.
+[1:29:41 AM]: <== Another exception was thrown: Unable to load asset: "assets/icons/imdb.png".
+[1:29:54 AM]: ChromeProxyService: Failed to evaluate expression 'break': InternalError: Expression evaluation in async frames is not supported. No frame with index 25..
+[1:29:54 AM]: <== Error: TimeoutException: Timeout occurred trying to load from CachedNetworkImageProvider("https://firebasestorage.googleapis.com/v0/b/the-movies-and-drama.appspot.com/o/coverPicture%2FcoverPicture%2Fusers%2FuserCover_O0vj0b7RaYUi2UU4wAZ9ITqmWFE3.jpg?alt=media&token=e2090664-befa-474e-9344-898aa2405e74", scale: 1)
+[1:29:54 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 321:10  createErrorWithStack
+[1:29:54 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/patch/core_patch.dart 337:28            _throw
+[1:29:54 AM]: <== dart-sdk/lib/core/errors.dart 120:5                                           throwWithStackTrace
+[1:29:54 AM]: <== dart-sdk/lib/async/zone.dart 1386:11                                          callback
+[1:29:54 AM]: <== dart-sdk/lib/async/schedule_microtask.dart 40:11                              _microtaskLoop
+[1:29:54 AM]: <== dart-sdk/lib/async/schedule_microtask.dart 49:5                               _startMicrotaskLoop
+[1:29:54 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/patch/async_patch.dart 177:15           <fn>
+[1:33:48 AM]: <== [Instance of 'PostModel']
+[1:33:48 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:33:58 AM]: <== []
+[1:33:59 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:33:59 AM]: <== Another exception was thrown: ImageCodecException: Failed to load network image.
+[1:34:06 AM]: <== Error: TimeoutException: Timeout occurred trying to load from CachedNetworkImageProvider("https://firebasestorage.googleapis.com/v0/b/the-movies-and-drama.appspot.com/o/coverPicture%2FcoverPicture%2Fusers%2FuserCover_BRLZNE7kWjbNy9bNzwsRU6SNdTF2.jpg?alt=media&token=ac5742d2-feda-4b96-9bcc-ce94cd66a5ca", scale: 1)
+[1:34:06 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 321:10  createErrorWithStack
+[1:34:06 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/patch/core_patch.dart 337:28            _throw
+[1:34:06 AM]: <== dart-sdk/lib/core/errors.dart 120:5                                           throwWithStackTrace
+[1:34:06 AM]: <== dart-sdk/lib/async/zone.dart 1386:11                                          callback
+[1:34:06 AM]: <== dart-sdk/lib/async/schedule_microtask.dart 40:11                              _microtaskLoop
+[1:34:06 AM]: <== dart-sdk/lib/async/schedule_microtask.dart 49:5                               _startMicrotaskLoop
+[1:34:06 AM]: <== dart-sdk/lib/_internal/js_dev_runtime/patch/async_patch.dart 177:15           <fn>
+[1:34:18 AM]: <== Application finished.
+[1:34:18 AM]: <== [{"event":"app.stop","params":{"appId":"d27701f4-d565-43d5-af9d-be548fe3ad7c"}}]
