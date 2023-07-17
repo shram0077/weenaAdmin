@@ -50,6 +50,13 @@ class DatabaseServices {
     return moviesSnap.docs.length;
   }
 
+// setupIsMovieOnPush18
+  static Future<bool> setupIsMovieOnPush18(String movieId) async {
+    DocumentSnapshot movieDoc = await plus18Ref.doc(movieId).get();
+
+    return movieDoc.exists;
+  }
+
   // Check UserId
   static Future<String> checkUserId(String userId) async {
     DocumentSnapshot<Map<String, dynamic>> userSnap =
@@ -101,7 +108,7 @@ class DatabaseServices {
   // Get Reccomended Post
   static Future<List<PostModel>> getRecommendedPost() async {
     QuerySnapshot userPostsSnap =
-        await recommendedRef.orderBy("Timestamp", descending: false).get();
+        await recommendedRef.orderBy("Timestamp", descending: true).get();
     List<PostModel> userPosts =
         userPostsSnap.docs.map((doc) => PostModel.fromDoc(doc)).toList();
 
@@ -126,10 +133,11 @@ class DatabaseServices {
     print(userAdmin.where((element) => element.admin));
     return userAdmin;
   }
-  // Get New Movies
 
+  // Get New Movies
   static Future<List<PostModel>> getNewMovies() async {
-    QuerySnapshot userPostsSnap = await newMoviesRef.get();
+    QuerySnapshot userPostsSnap =
+        await newMoviesRef.orderBy("Timestamp", descending: true).get();
     List<PostModel> userPosts =
         userPostsSnap.docs.map((doc) => PostModel.fromDoc(doc)).toList();
 
@@ -139,7 +147,7 @@ class DatabaseServices {
 
   static Future<List<PostModel>> getExplorerPost() async {
     QuerySnapshot exploerePostSnap =
-        await explorersRef.orderBy("Timestamp", descending: false).get();
+        await explorersRef.orderBy("Timestamp", descending: true).get();
     List<PostModel> userPosts =
         exploerePostSnap.docs.map((doc) => PostModel.fromDoc(doc)).toList();
 

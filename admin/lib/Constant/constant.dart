@@ -45,6 +45,8 @@ final viewsRef = _fireStore.collection('views');
 final commentsRef = _fireStore.collection('comments');
 final seriesRef = _fireStore.collection('series');
 final movieReportsRef = _fireStore.collection('movieReports');
+final plus18Ref = _fireStore.collection('+18');
+
 // Tags
 final tags = [
   'ئاکشن',
@@ -66,4 +68,13 @@ final tags = [
   'کۆری',
   'یابانی',
   'چیرۆكی هه‌ستبزوێن',
+  'ژیاننامە',
+  'دۆکیومێنتاری',
+  'مێژووی',
+];
+List<String> listOfValue = [
+  'Movie',
+  'Drama',
+  'Series',
+  'Animation',
 ];

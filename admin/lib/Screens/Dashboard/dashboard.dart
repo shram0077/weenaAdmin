@@ -45,10 +45,13 @@ class _DashboardState extends State<Dashboard> {
     if (mounted) {
       setState(() {
         _moviesCount = count;
+
         print(count);
       });
     }
   }
+
+  List<PostModel> _series = [];
 
   List<PostModel> _newMovies = [];
   bool _resreshing = false;
@@ -56,11 +59,11 @@ class _DashboardState extends State<Dashboard> {
     setState(() {
       _resreshing = true;
     });
-    List<PostModel> recommendedPosts = await DatabaseServices.getNewMovies();
+    List<PostModel> mvs = await DatabaseServices.getNewMovies();
     if (mounted) {
       setState(() {
-        _newMovies = recommendedPosts.toList();
-
+        _newMovies = mvs.toList();
+        _series = mvs.where((element) => element.type == "Series").toList();
         _resreshing = false;
       });
     }
@@ -328,7 +331,7 @@ class _DashboardState extends State<Dashboard> {
                                         width: 15.0,
                                       ),
                                       const Text(
-                                        "Creators",
+                                        "Series",
                                         style: TextStyle(
                                           fontSize: 26.0,
                                           color: Colors.amber,
@@ -341,7 +344,7 @@ class _DashboardState extends State<Dashboard> {
                                     height: 20.0,
                                   ),
                                   Text(
-                                    "$_creatorsCunt",
+                                    "${_series.length}",
                                     style: TextStyle(
                                       fontSize: 36,
                                       color: Colors.amber,
@@ -502,7 +505,9 @@ class _DashboardState extends State<Dashboard> {
                                           (BuildContext context, int index) {
                                         PostModel postModel = PostModel.fromDoc(
                                             snapshot.data.docs[index]);
-                                        return buildPostCard(postModel);
+                                        return buildPostCard(
+                                          postModel,
+                                        );
                                       });
                                 }),
                           ),
@@ -668,128 +673,5 @@ class _DashboardState extends State<Dashboard> {
         backgroundColor: moviePageColor,
       ),
     );
-  }
-
-  buildPostCard(PostModel postModel) {
-    return StreamBuilder(
-        stream: usersRef.doc(postModel.userId).snapshots(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (!snapshot.hasData) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 300.0),
-              child: Center(child: circularProgressIndicator()),
-            );
-            // ignore: unrelated_type_equality_checks
-          } else if (snapshot == ConnectionState.waiting) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 300.0),
-              child: Center(child: circularProgressIndicator()),
-            );
-          }
-          if (snapshot.hasError) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Snapshot Error',
-                      style: GoogleFonts.alef(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
-                          color: errorColor)),
-                ],
-              ),
-            );
-          }
-
-          UserModell userModel = UserModell.fromDoc(snapshot.data);
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Container(
-                  padding: const EdgeInsets.only(top: 4, bottom: 4),
-                  decoration: BoxDecoration(
-                      color: moviePageColor.withOpacity(0.9),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: ListTile(
-                    subtitle: Flexible(
-                      child: Text(
-                        postModel.description,
-                        textDirection: TextDirection.rtl,
-                        style: GoogleFonts.barlow(
-                            fontWeight: FontWeight.w600,
-                            color: const Color.fromARGB(255, 220, 220, 220)),
-                      ),
-                    ),
-                    trailing: Text(
-                      postModel.userId == _auth.currentUser!.uid
-                          ? "Me"
-                          : "by ${userModel.username}",
-                      style: GoogleFonts.barlow(
-                          color: whiteColor.withOpacity(0.9),
-                          fontWeight: FontWeight.bold),
-                    ),
-                    leading: Container(
-                      padding: const EdgeInsets.all(2),
-                      height: 75,
-                      width: 75,
-                      decoration: BoxDecoration(
-                        color: profileBGcolor,
-                        borderRadius: BorderRadius.circular(3),
-                        // ignore: prefer_const_literals_to_create_immutables
-                        boxShadow: [
-                          const BoxShadow(
-                            color: appcolor,
-                            spreadRadius: 0.1,
-                            blurRadius: 0.1,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(3),
-                        child: CachedNetworkImage(
-                          imageUrl: postModel.thumbnail,
-                          fit: BoxFit.cover,
-                          width: 130,
-                          height: 130,
-                        ),
-                      ),
-                    ),
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          postModel.title,
-                          style: GoogleFonts.barlow(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              color: whiteColor),
-                        ),
-                        postModel.verified
-                            ? const Icon(
-                                CupertinoIcons.star_circle,
-                                size: 16,
-                                color: appcolor,
-                              )
-                            : const SizedBox()
-                      ],
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: MoviePage(
-                                postModel: postModel,
-                              )));
-                    },
-                  ),
-                ),
-              ),
-            ],
-          );
-        });
   }
 }

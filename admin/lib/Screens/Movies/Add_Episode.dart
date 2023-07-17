@@ -176,14 +176,6 @@ class _AddEpisodeState extends State<AddEpisode> {
       _loading = true;
     });
     var uuid = Uuid().v4();
-    UploadTask uploadVideoTask = storageRef
-        .child("video's/${widget.postModel.title}, $uuid.mp4")
-        .putFile(_video!);
-    TaskSnapshot taskSnapshotV = await uploadVideoTask.whenComplete(() => null);
-    String videoUrl = await taskSnapshotV.ref
-        .getDownloadURL()
-        .whenComplete(() => print("Video uploaded to Cloud Storage"));
-
     await postsRef
         .doc(widget.postModel.userId)
         .collection('userPosts')
@@ -192,7 +184,7 @@ class _AddEpisodeState extends State<AddEpisode> {
         .doc(uuid)
         .set({
       "description": widget.postModel.description,
-      "video": videoUrl,
+      "video": _videoURL,
       "Timestamp": Timestamp.now(),
       "postuid": uuid,
       "title": widget.postModel.title,
@@ -206,7 +198,7 @@ class _AddEpisodeState extends State<AddEpisode> {
       "trailer": widget.postModel.trailer,
       "imdbRating": widget.postModel.imdbRating,
       "likes": widget.postModel.likes,
-      "views": widget.postModel.verified
+      "views": widget.postModel.views
     });
     setState(() {
       _loading = false;

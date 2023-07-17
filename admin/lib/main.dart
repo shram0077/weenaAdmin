@@ -1,6 +1,5 @@
 import 'package:admin/Screens/Dashboard/dashboard.dart';
 import 'package:admin/Screens/Post/Dramas/dramas.dart';
-import 'package:admin/Screens/Login/login.dart';
 import 'package:admin/Screens/Post/Explorer/explorer.dart';
 import 'package:admin/Screens/Post/NewMovies/newMovies.dart';
 import 'package:admin/Screens/Post/Reccomends/Reccomends.dart';
@@ -8,7 +7,6 @@ import 'package:admin/Screens/Reports/reports.dart';
 import 'package:admin/Screens/Users/users.dart';
 import 'package:admin/Screens/home.dart';
 import 'package:admin/Services/Auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

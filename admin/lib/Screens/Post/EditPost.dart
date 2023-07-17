@@ -37,12 +37,7 @@ class _EditPostState extends State<EditPost> {
   int? _views;
 
   String? _typeMovie;
-  List<String> listOfValue = [
-    'Movie',
-    'Drama',
-    'Series',
-    'Animation and Carton',
-  ];
+
   bool _isLoading = false;
   save() async {
     setState(() {

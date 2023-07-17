@@ -6,12 +6,14 @@ import 'package:admin/Screens/Post/Explorer/explorer.dart';
 import 'package:admin/Screens/Post/NewMovies/newMovies.dart';
 import 'package:admin/Screens/Post/Reccomends/Reccomends.dart';
 import 'package:admin/Screens/Reports/reports.dart';
+import 'package:admin/Screens/Requests/requests.dart';
 import 'package:admin/Screens/Upload/upload.dart';
 import 'package:admin/Screens/Users/users.dart';
 import 'package:admin/Services/Auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
@@ -63,6 +65,11 @@ class _HomeState extends State<Home> {
       case Reports.id:
         setState(() {
           _selectedScreen = Reports();
+        });
+        break;
+      case Requests.id:
+        setState(() {
+          _selectedScreen = Requests();
         });
         break;
     }
@@ -127,7 +134,9 @@ class _HomeState extends State<Home> {
               icon: Icons.explore,
             ),
             AdminMenuItem(
-                title: 'Reports', route: Reports.id, icon: Icons.report)
+                title: 'Reports', route: Reports.id, icon: Icons.report),
+            AdminMenuItem(
+                title: 'Requests', route: Requests.id, icon: FontAwesome.inbox)
           ],
           selectedRoute: Home.id,
           iconColor: whiteColor,

@@ -89,7 +89,8 @@ class _UserInformationState extends State<UserInformation> {
                           width: 4,
                         ),
                         Text(
-                          userModel.name,
+                          MyEncriptionDecription.decryptWithAESKey(
+                              userModel.email),
                           style: GoogleFonts.barlow(
                               color: whiteColor, fontSize: 18),
                         ),
@@ -191,6 +192,25 @@ class _UserInformationState extends State<UserInformation> {
                         DateFormat.yMMMMd().format(
                           userModel.birthday.toDate(),
                         ),
+                        style: GoogleFonts.barlow(
+                            color: whiteColor, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 4.0, right: 4, top: 4),
+                    child: ListTile(
+                      leading: Icon(
+                        CupertinoIcons.calendar_circle,
+                        color: whiteColor,
+                      ),
+                      tileColor: moviePageColor.withOpacity(0.7),
+                      title: Text(
+                        "Gender",
+                        style: GoogleFonts.barlow(color: whiteColor),
+                      ),
+                      trailing: Text(
+                        userModel.gender,
                         style: GoogleFonts.barlow(
                             color: whiteColor, fontWeight: FontWeight.bold),
                       ),

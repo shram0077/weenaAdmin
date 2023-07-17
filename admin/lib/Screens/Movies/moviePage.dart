@@ -104,10 +104,20 @@ class _MoviePageState extends State<MoviePage> {
         NetworkImage(widget.postModel.thumbnail));
   }
 
+  bool? isMovieExists = false;
+  setupIsMovieOnPush18() async {
+    bool isFollowingThisUser =
+        await DatabaseServices.setupIsMovieOnPush18(widget.postModel.postuid);
+    setState(() {
+      isMovieExists = isFollowingThisUser;
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    setupIsMovieOnPush18();
     _genrateColors();
     getLikesCount();
     getViewsCount();
@@ -339,6 +349,7 @@ class _MoviePageState extends State<MoviePage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Material(
                         color: shadowColor.withOpacity(0.2),
@@ -395,6 +406,34 @@ class _MoviePageState extends State<MoviePage> {
                           ),
                         ),
                       ),
+                      TextButton(
+                          onPressed: () async {
+                            if (isMovieExists == true) {
+                              await plus18Ref
+                                  .doc(widget.postModel.postuid)
+                                  .delete();
+                              setState(() {
+                                setupIsMovieOnPush18();
+                              });
+                            } else {
+                              await plus18Ref
+                                  .doc(widget.postModel.postuid)
+                                  .set({
+                                "postUID": widget.postModel.postuid,
+                                "Title": widget.postModel.title,
+                              });
+                              setState(() {
+                                setupIsMovieOnPush18();
+                              });
+                            }
+                          },
+                          child: Text(
+                            isMovieExists! ? "Remove on +18" : "Set to +18",
+                            style: GoogleFonts.barlow(
+                                color: whiteColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ))
                     ],
                   ),
                 ),

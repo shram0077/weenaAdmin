@@ -4,13 +4,11 @@ import 'package:admin/Screens/Users/widget.dart';
 import 'package:admin/Services/Database.dart';
 import 'package:admin/encryption_decryption/encryption.dart';
 import 'package:admin/widgets/widget.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Users extends StatefulWidget {
@@ -124,6 +122,8 @@ class _UsersState extends State<Users> {
                           primary: true,
                           itemCount: snapshot.data.docs.length,
                           itemBuilder: (context, index) {
+                            bool isVerifecation =
+                                snapshot.data.docs[index]['verification'];
                             return Padding(
                               padding: EdgeInsets.all(8.0),
                               child: ListTile(
@@ -184,11 +184,21 @@ class _UsersState extends State<Users> {
                                                           .data.docs[index]
                                                       ['profilePicture'])))),
                                 ),
-                                title: Text(
-                                  snapshot.data.docs[index]['name'],
-                                  style: GoogleFonts.barlow(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500),
+                                title: Row(
+                                  children: [
+                                    Text(
+                                      snapshot.data.docs[index]['name'],
+                                      style: GoogleFonts.barlow(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    isVerifecation
+                                        ? Icon(
+                                            CupertinoIcons.checkmark_seal_fill,
+                                            size: 16,
+                                            color: whiteColor)
+                                        : SizedBox()
+                                  ],
                                 ),
                               ),
                             );

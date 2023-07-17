@@ -220,6 +220,7 @@ class _UserProfileState extends State<UserProfile> {
                   fontSize: 25,
                 )));
         break;
+        ;
     }
   }
 

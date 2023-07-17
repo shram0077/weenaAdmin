@@ -39,14 +39,7 @@ class _UploadState extends State<Upload> {
   bool _uploadToFollowersTimeline = false;
   bool _isCheckedUser = false;
   double? imdbRating;
-  List<String> listOfValue = [
-    'Movie',
-    'Drama',
-    'Series',
-    'Animation and Carton'
-        'India',
-    'Korea , China , Japanes'
-  ];
+
   String? _typeMovie;
   List<String> userdIds = [
     "O0vj0b7RaYUi2UU4wAZ9ITqmWFE3",
